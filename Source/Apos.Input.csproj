@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <PackageId>Apos.Input</PackageId>
+    <Title>Apos.Input</Title>
+    <Version>0.1.0</Version>
+    <Description>Input library for MonoGame.</Description>
+    <Authors>Jean-David Moisan</Authors>
+    <Company>Vyne Enterprise Inc.</Company>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageTags>gamedev;monogame;ui</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/Apostolique/Apos.Input/master/Images/Icon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Apostolique/Apos.Input</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Apostolique/Apos.Input</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
+  </ItemGroup>
+</Project>
