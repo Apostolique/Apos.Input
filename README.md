@@ -13,4 +13,15 @@ Input library for MonoGame.
 
 ## Usage samples
 
-Coming soon!
+```csharp
+//Create an action to toggle fullscreen.
+//It should work on both Alt keys and Enter.
+var toggleFullScreen = new ActionKeyboardComposite();
+toggleFullscreen.AddSet(Keys.Enter).AddNeed(Keys.LeftAlt);
+toggleFullscreen.AddSet(Keys.Enter).AddNeed(Keys.RightAlt);
+
+//To check if toggleFullscreen is triggered:
+if (toggleFullscreen.Pressed()) {
+    //Do the fullscreen change.
+}
+```
