@@ -7,7 +7,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionGamePadSet in order to trigger when either one is true.
     /// </summary>
     public class ActionGamePadComposite {
-        //constructors
+        // Group: Constructors
         public ActionGamePadComposite() {
             _actionSets = new List<ActionGamePadSet>();
         }
@@ -15,7 +15,7 @@ namespace Apos.Input {
             _actionSets = actionSets;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionGamePadSet AddSet(Func<GamePadState[], ButtonState> button) {
             ActionGamePadSet newSet = new ActionGamePadSet().AddNeed(button);
             AddSet(newSet);
@@ -66,7 +66,7 @@ namespace Apos.Input {
             return released;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionGamePadSet> _actionSets;
     }
 }

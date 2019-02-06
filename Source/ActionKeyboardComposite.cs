@@ -6,7 +6,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionKeyboardSet in order to trigger when either one is true.
     /// </summary>
     public class ActionKeyboardComposite {
-        //constructors
+        // Group: Constructors
         public ActionKeyboardComposite() {
             _actionSets = new List<ActionKeyboardSet>();
         }
@@ -14,7 +14,7 @@ namespace Apos.Input {
             _actionSets = actionSets;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionKeyboardSet AddSet(Keys key) {
             ActionKeyboardSet newSet = new ActionKeyboardSet().AddNeed(key);
             AddSet(newSet);
@@ -65,7 +65,7 @@ namespace Apos.Input {
             return released;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionKeyboardSet> _actionSets;
     }
 }

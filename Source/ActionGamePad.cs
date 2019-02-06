@@ -6,12 +6,12 @@ namespace Apos.Input {
     /// Goal: Checks various Mouse conditions for a specific button.
     /// </summary>
     public class ActionGamePad {
-        //constructors
+        // Group: Constructors
         public ActionGamePad(Func<GamePadState[], ButtonState> needButton) {
             _needButton = needButton;
         }
 
-        //public functions
+        // Group: Public Functions
         public bool Pressed() {
             return Pressed(_needButton) && InputHelper.IsActive;
         }
@@ -37,7 +37,7 @@ namespace Apos.Input {
             return button(InputHelper.NewGamePad) == ButtonState.Released && button(InputHelper.OldGamePad) == ButtonState.Pressed;
         }
 
-        //private vars
+        // Group: Private Variables
         private Func<GamePadState[], ButtonState> _needButton;
     }
 }

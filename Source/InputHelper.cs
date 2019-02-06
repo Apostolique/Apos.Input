@@ -7,7 +7,7 @@ namespace Apos.Input {
     /// Goal: Unorganized helper functions for Apos.Input.
     /// </summary>
     public static class InputHelper {
-        //public vars
+        // Group: Public Variables
         public static Game Game;
         public static bool IsActive => Game.IsActive;
         public static GameWindow Window => Game.Window;
@@ -23,7 +23,7 @@ namespace Apos.Input {
         public static GamePadState[] NewGamePad => _newGamepad;
         public static GamePadCapabilities[] GamePadCapabilities => _gamePadCapabilities;
 
-        //public functions
+        // Group: Public Functions
         public static void Update() {
             if (!_initiated) {
                 Setup();
@@ -49,7 +49,7 @@ namespace Apos.Input {
             }
         }
 
-        //private functions
+        // Group: Private Functions
         private static void Setup() {
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
@@ -65,7 +65,7 @@ namespace Apos.Input {
             _initiated = true;
         }
 
-        //private vars
+        // Group: Private Variables
         private static bool _initiated = false;
         private static MouseState _oldMouse;
         private static MouseState _newMouse;

@@ -7,7 +7,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionMouse to make more complex action triggers.
     /// </summary>
     public class ActionMouseSet {
-        //constructors
+        // Group: Constructors
         public ActionMouseSet() {
             _needAction = new List<ActionMouse>();
             _notAction = new List<ActionMouse>();
@@ -17,7 +17,7 @@ namespace Apos.Input {
             _notAction = notAction;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionMouseSet AddNeed(Func<MouseState, ButtonState> button) {
             return AddNeed(new ActionMouse(button));
         }
@@ -129,7 +129,7 @@ namespace Apos.Input {
             return released && holding && !notHolding;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionMouse> _needAction;
         private List<ActionMouse> _notAction;
     }

@@ -5,12 +5,12 @@ namespace Apos.Input {
     /// Goal: Checks various keyboard conditions for a specific key.
     /// </summary>
     public class ActionKeyboard {
-        //constructors
+        // Group: Constructors
         public ActionKeyboard(Keys iNeedKey) {
             _needKey = iNeedKey;
         }
 
-        //public functions
+        // Group: Public Functions
         public bool Pressed() {
             return Pressed(_needKey) && InputHelper.IsActive;
         }
@@ -36,7 +36,7 @@ namespace Apos.Input {
             return InputHelper.NewKeyboard.IsKeyUp(key) && InputHelper.OldKeyboard.IsKeyDown(key);
         }
 
-        //private vars
+        // Group: Private Variables
         private Keys _needKey;
     }
 }

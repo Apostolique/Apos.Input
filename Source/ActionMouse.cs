@@ -6,12 +6,12 @@ namespace Apos.Input {
     /// Goal: Checks various Mouse conditions for a specific button.
     /// </summary>
     public class ActionMouse {
-        //constructors
+        // Group: Constructors
         public ActionMouse(Func<MouseState, ButtonState> needButton) {
             _needButton = needButton;
         }
 
-        //public functions
+        // Group: Public Functions
         public bool Pressed() {
             return Pressed(_needButton) && IsMouseValid(InputHelper.IsActive);
         }
@@ -43,7 +43,7 @@ namespace Apos.Input {
             return false;
         }
 
-        //private vars
+        // Group: Private Variables
         private Func<MouseState, ButtonState> _needButton;
     }
 }

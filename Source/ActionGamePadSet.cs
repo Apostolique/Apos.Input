@@ -7,7 +7,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionGamePad to make more complex action triggers.
     /// </summary>
     public class ActionGamePadSet {
-        //constructors
+        // Group: Constructors
         public ActionGamePadSet() {
             _needAction = new List<ActionGamePad>();
             _notAction = new List<ActionGamePad>();
@@ -17,7 +17,7 @@ namespace Apos.Input {
             _notAction = notAction;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionGamePadSet AddNeed(Func<GamePadState[], ButtonState> button) {
             return AddNeed(new ActionGamePad(button));
         }
@@ -129,7 +129,7 @@ namespace Apos.Input {
             return released && holding && !notHolding;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionGamePad> _needAction;
         private List<ActionGamePad> _notAction;
     }

@@ -6,7 +6,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionKeyboard to make more complex action triggers.
     /// </summary>
     public class ActionKeyboardSet {
-        //constructors
+        // Group: Constructors
         public ActionKeyboardSet() {
             _needAction = new List<ActionKeyboard>();
             _notAction = new List<ActionKeyboard>();
@@ -16,7 +16,7 @@ namespace Apos.Input {
             _notAction = notAction;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionKeyboardSet AddNeed(Keys key) {
             return AddNeed(new ActionKeyboard(key));
         }
@@ -122,7 +122,7 @@ namespace Apos.Input {
             return released && holding && !notHolding;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionKeyboard> _needAction;
         private List<ActionKeyboard> _notAction;
     }

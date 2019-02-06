@@ -7,7 +7,7 @@ namespace Apos.Input {
     /// Goal: Combines ActionMouseSet in order to trigger when either one is true.
     /// </summary>
     public class ActionMouseComposite {
-        //constructors
+        // Group: Constructors
         public ActionMouseComposite() {
             _actionSets = new List<ActionMouseSet>();
         }
@@ -15,7 +15,7 @@ namespace Apos.Input {
             _actionSets = actionSets;
         }
 
-        //public functions
+        // Group: Public Functions
         public ActionMouseSet AddSet(Func<MouseState, ButtonState> button) {
             ActionMouseSet newSet = new ActionMouseSet().AddNeed(button);
             AddSet(newSet);
@@ -66,7 +66,7 @@ namespace Apos.Input {
             return released;
         }
 
-        //private vars
+        // Group: Private Variables
         private List<ActionMouseSet> _actionSets;
     }
 }
