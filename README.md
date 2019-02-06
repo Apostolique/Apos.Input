@@ -9,7 +9,7 @@ Input library for MonoGame.
 
 ## Features
 
-* Mouse, Keyboard
+* Mouse, Keyboard, GamePad buttons
 
 ## Usage samples
 
