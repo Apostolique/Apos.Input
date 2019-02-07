@@ -30,14 +30,14 @@ namespace Apos.Input {
         /// This implicitly creates an ActionKeyboardSet.
         /// </summary>
         /// <param name="key">A key that will have it's own set.</param>
-        /// <returns>Returns itself for easy function chaining.</returns>
+        /// <returns>Returns the set for easy function chaining.</returns>
         public ActionKeyboardSet AddSet(Keys key) {
             ActionKeyboardSet newSet = new ActionKeyboardSet().AddNeed(key);
             AddSet(newSet);
             return newSet;
         }
         /// <param name="aks">An ActionKeyboardSet to add.</param>
-        /// <returns>Returns itself for easy function chaining.</returns>
+        /// <returns>Returns the set for easy function chaining.</returns>
         public ActionKeyboardComposite AddSet(ActionKeyboardSet aks) {
             _actionSets.Add(aks);
             return this;
