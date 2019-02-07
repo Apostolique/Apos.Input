@@ -17,6 +17,14 @@ Input library for MonoGame.
 
 ## Usage samples
 
+In your game's `Initialize()`, pass the game class to InputHelper.Game:
+
+```csharp
+protected override void Initialize() {
+    InputHelper.Game = this;
+}
+```
+
 ```csharp
 //Create an action to toggle fullscreen.
 //It should work on both Alt keys and Enter.
