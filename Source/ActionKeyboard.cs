@@ -47,7 +47,7 @@ namespace Apos.Input {
         public static bool HeldOnly(Keys key) {
             return InputHelper.NewKeyboard.IsKeyDown(key) && InputHelper.OldKeyboard.IsKeyDown(key);
         }
-        /// <returns>Returns true when a key was pressed and is now released.</returns>
+        /// <returns>Returns true when a key was pressed and is now not pressed.</returns>
         public static bool Released(Keys key) {
             return InputHelper.NewKeyboard.IsKeyUp(key) && InputHelper.OldKeyboard.IsKeyDown(key);
         }
