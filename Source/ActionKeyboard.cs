@@ -21,12 +21,12 @@ namespace Apos.Input {
             return Pressed(_needKey) && InputHelper.IsActive;
         }
         /// <returns>Returns true when a key is now pressed.</returns>
-        public bool Holding() {
-            return Holding(_needKey) && InputHelper.IsActive;
+        public bool Held() {
+            return Held(_needKey) && InputHelper.IsActive;
         }
         /// <returns>Returns true when a key was pressed and is now pressed.</returns>
-        public bool HoldingOnly() {
-            return HoldingOnly(_needKey) && InputHelper.IsActive;
+        public bool HeldOnly() {
+            return HeldOnly(_needKey) && InputHelper.IsActive;
         }
         /// <returns>Returns true when a key was pressed and is now not pressed.</returns>
         public bool Released() {
@@ -40,11 +40,11 @@ namespace Apos.Input {
             return InputHelper.NewKeyboard.IsKeyDown(key) && InputHelper.OldKeyboard.IsKeyUp(key);
         }
         /// <returns>Returns true when a key is now pressed.</returns>
-        public static bool Holding(Keys key) {
+        public static bool Held(Keys key) {
             return InputHelper.NewKeyboard.IsKeyDown(key);
         }
         /// <returns>Returns true when a key was pressed and is now pressed.</returns>
-        public static bool HoldingOnly(Keys key) {
+        public static bool HeldOnly(Keys key) {
             return InputHelper.NewKeyboard.IsKeyDown(key) && InputHelper.OldKeyboard.IsKeyDown(key);
         }
         /// <returns>Returns true when a key was pressed and is now released.</returns>

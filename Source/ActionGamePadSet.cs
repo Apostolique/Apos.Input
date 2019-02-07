@@ -34,8 +34,8 @@ namespace Apos.Input {
         }
         public bool Pressed() {
             bool pressed = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionGamePad ag in _needAction) {
                 pressed = pressed || ag.Pressed();
@@ -44,62 +44,62 @@ namespace Apos.Input {
                 }
             }
             foreach (ActionGamePad ag in _needAction) {
-                holding = holding && ag.Holding();
-                if (!holding) {
+                held = held && ag.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionGamePad ag in _notAction) {
-                notHolding = notHolding || ag.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ag.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return pressed && holding && !notHolding;
+            return pressed && held && !notHeld;
         }
-        public bool Holding() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool Held() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionGamePad ag in _needAction) {
-                holding = holding && ag.Holding();
-                if (!holding) {
+                held = held && ag.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionGamePad ag in _notAction) {
-                notHolding = notHolding || ag.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ag.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
-        public bool HoldingOnly() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool HeldOnly() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionGamePad ag in _needAction) {
-                holding = holding && ag.HoldingOnly();
-                if (!holding) {
+                held = held && ag.HeldOnly();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionGamePad ag in _notAction) {
-                notHolding = notHolding || ag.HoldingOnly();
-                if (notHolding) {
+                notHeld = notHeld || ag.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
         public bool Released() {
             bool released = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             ActionGamePad releasedMouse = null;
 
@@ -114,19 +114,19 @@ namespace Apos.Input {
                 if (ag == releasedMouse) {
                     continue;
                 }
-                holding = holding && ag.Holding();
-                if (!holding) {
+                held = held && ag.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionGamePad ag in _notAction) {
-                notHolding = notHolding || ag.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ag.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return released && holding && !notHolding;
+            return released && held && !notHeld;
         }
 
         // Group: Private Variables

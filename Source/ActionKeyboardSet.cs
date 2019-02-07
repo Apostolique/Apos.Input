@@ -63,8 +63,8 @@ namespace Apos.Input {
         /// </returns>
         public bool Pressed() {
             bool pressed = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionKeyboard ak in _needAction) {
                 pressed = pressed || ak.Pressed();
@@ -73,65 +73,65 @@ namespace Apos.Input {
                 }
             }
             foreach (ActionKeyboard ak in _needAction) {
-                holding = holding && ak.Holding();
-                if (!holding) {
+                held = held && ak.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionKeyboard ak in _notAction) {
-                notHolding = notHolding || ak.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ak.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return pressed && holding && !notHolding;
+            return pressed && held && !notHeld;
         }
         /// <returns>
         /// Returns true when all the needed keys are held.
         /// Always returns false when at least 1 not needed key is held.
         /// </returns>
-        public bool Holding() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool Held() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionKeyboard ak in _needAction) {
-                holding = holding && ak.Holding();
-                if (!holding) {
+                held = held && ak.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionKeyboard ak in _notAction) {
-                notHolding = notHolding || ak.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ak.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
         /// <returns>
         /// Returns true when all the needed keys were held and are now held.
         /// Always returns false when at least 1 not needed key is held.
         /// </returns>
-        public bool HoldingOnly() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool HeldOnly() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionKeyboard ak in _needAction) {
-                holding = holding && ak.HoldingOnly();
-                if (!holding) {
+                held = held && ak.HeldOnly();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionKeyboard ak in _notAction) {
-                notHolding = notHolding || ak.HoldingOnly();
-                if (notHolding) {
+                notHeld = notHeld || ak.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
         /// <returns>
         /// Returns true when at least 1 needed key is released and the other needed keys are held.
@@ -139,8 +139,8 @@ namespace Apos.Input {
         /// </returns>
         public bool Released() {
             bool released = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionKeyboard ak in _needAction) {
                 released = released || ak.Released();
@@ -149,19 +149,19 @@ namespace Apos.Input {
                 }
             }
             foreach (ActionKeyboard ak in _needAction) {
-                holding = holding && (ak.Holding() || ak.Released());
-                if (!holding) {
+                held = held && (ak.Held() || ak.Released());
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionKeyboard ak in _notAction) {
-                notHolding = notHolding || ak.Holding();
-                if (notHolding) {
+                notHeld = notHeld || ak.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return released && holding && !notHolding;
+            return released && held && !notHeld;
         }
 
         // Group: Private Variables

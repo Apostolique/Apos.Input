@@ -34,8 +34,8 @@ namespace Apos.Input {
         }
         public bool Pressed() {
             bool pressed = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionMouse am in _needAction) {
                 pressed = pressed || am.Pressed();
@@ -44,62 +44,62 @@ namespace Apos.Input {
                 }
             }
             foreach (ActionMouse am in _needAction) {
-                holding = holding && am.Holding();
-                if (!holding) {
+                held = held && am.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionMouse am in _notAction) {
-                notHolding = notHolding || am.Holding();
-                if (notHolding) {
+                notHeld = notHeld || am.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return pressed && holding && !notHolding;
+            return pressed && held && !notHeld;
         }
-        public bool Holding() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool Held() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionMouse am in _needAction) {
-                holding = holding && am.Holding();
-                if (!holding) {
+                held = held && am.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionMouse am in _notAction) {
-                notHolding = notHolding || am.Holding();
-                if (notHolding) {
+                notHeld = notHeld || am.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
-        public bool HoldingOnly() {
-            bool holding = true;
-            bool notHolding = false;
+        public bool HeldOnly() {
+            bool held = true;
+            bool notHeld = false;
 
             foreach (ActionMouse am in _needAction) {
-                holding = holding && am.HoldingOnly();
-                if (!holding) {
+                held = held && am.HeldOnly();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionMouse am in _notAction) {
-                notHolding = notHolding || am.HoldingOnly();
-                if (notHolding) {
+                notHeld = notHeld || am.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return holding && !notHolding;
+            return held && !notHeld;
         }
         public bool Released() {
             bool released = false;
-            bool holding = true;
-            bool notHolding = false;
+            bool held = true;
+            bool notHeld = false;
 
             ActionMouse releasedMouse = null;
 
@@ -114,19 +114,19 @@ namespace Apos.Input {
                 if (am == releasedMouse) {
                     continue;
                 }
-                holding = holding && am.Holding();
-                if (!holding) {
+                held = held && am.Held();
+                if (!held) {
                     break;
                 }
             }
             foreach (ActionMouse am in _notAction) {
-                notHolding = notHolding || am.Holding();
-                if (notHolding) {
+                notHeld = notHeld || am.Held();
+                if (notHeld) {
                     break;
                 }
             }
 
-            return released && holding && !notHolding;
+            return released && held && !notHeld;
         }
 
         // Group: Private Variables

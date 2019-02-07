@@ -15,11 +15,11 @@ namespace Apos.Input {
         public bool Pressed() {
             return Pressed(_needButton) && InputHelper.IsActive;
         }
-        public bool Holding() {
-            return Holding(_needButton) && InputHelper.IsActive;
+        public bool Held() {
+            return Held(_needButton) && InputHelper.IsActive;
         }
-        public bool HoldingOnly() {
-            return HoldingOnly(_needButton) && InputHelper.IsActive;
+        public bool HeldOnly() {
+            return HeldOnly(_needButton) && InputHelper.IsActive;
         }
         public bool Released() {
             return Released(_needButton) && InputHelper.IsActive;
@@ -27,10 +27,10 @@ namespace Apos.Input {
         public static bool Pressed(Func<GamePadState[], ButtonState> button) {
             return button(InputHelper.NewGamePad) == ButtonState.Pressed && button(InputHelper.OldGamePad) == ButtonState.Released;
         }
-        public static bool Holding(Func<GamePadState[], ButtonState> button) {
+        public static bool Held(Func<GamePadState[], ButtonState> button) {
             return button(InputHelper.NewGamePad) == ButtonState.Pressed;
         }
-        public static bool HoldingOnly(Func<GamePadState[], ButtonState> button) {
+        public static bool HeldOnly(Func<GamePadState[], ButtonState> button) {
             return button(InputHelper.NewGamePad) == ButtonState.Pressed && button(InputHelper.OldGamePad) == ButtonState.Pressed;
         }
         public static bool Released(Func<GamePadState[], ButtonState> button) {

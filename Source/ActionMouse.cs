@@ -15,11 +15,11 @@ namespace Apos.Input {
         public bool Pressed() {
             return Pressed(_needButton) && IsMouseValid(InputHelper.IsActive);
         }
-        public bool Holding() {
-            return Holding(_needButton) && IsMouseValid(InputHelper.IsActive);
+        public bool Held() {
+            return Held(_needButton) && IsMouseValid(InputHelper.IsActive);
         }
-        public bool HoldingOnly() {
-            return HoldingOnly(_needButton) && IsMouseValid(InputHelper.IsActive);
+        public bool HeldOnly() {
+            return HeldOnly(_needButton) && IsMouseValid(InputHelper.IsActive);
         }
         public bool Released() {
             return Released(_needButton) && IsMouseValid(InputHelper.IsActive);
@@ -27,10 +27,10 @@ namespace Apos.Input {
         public static bool Pressed(Func<MouseState, ButtonState> button) {
             return button(InputHelper.NewMouse) == ButtonState.Pressed && button(InputHelper.OldMouse) == ButtonState.Released;
         }
-        public static bool Holding(Func<MouseState, ButtonState> button) {
+        public static bool Held(Func<MouseState, ButtonState> button) {
             return button(InputHelper.NewMouse) == ButtonState.Pressed;
         }
-        public static bool HoldingOnly(Func<MouseState, ButtonState> button) {
+        public static bool HeldOnly(Func<MouseState, ButtonState> button) {
             return button(InputHelper.NewMouse) == ButtonState.Pressed && button(InputHelper.OldMouse) == ButtonState.Pressed;
         }
         public static bool Released(Func<MouseState, ButtonState> button) {

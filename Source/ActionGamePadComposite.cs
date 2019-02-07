@@ -35,25 +35,25 @@ namespace Apos.Input {
             }
             return pressed;
         }
-        public bool Holding() {
-            bool holding = false;
+        public bool Held() {
+            bool held = false;
             foreach (ActionGamePadSet ags in _actionSets) {
-                holding = ags.Holding();
-                if (holding) {
+                held = ags.Held();
+                if (held) {
                     break;
                 }
             }
-            return holding;
+            return held;
         }
-        public bool HoldingOnly() {
-            bool holdingOnly = false;
+        public bool HeldOnly() {
+            bool heldOnly = false;
             foreach (ActionGamePadSet ags in _actionSets) {
-                holdingOnly = ags.HoldingOnly();
-                if (holdingOnly) {
+                heldOnly = ags.HeldOnly();
+                if (heldOnly) {
                     break;
                 }
             }
-            return holdingOnly;
+            return heldOnly;
         }
         public bool Released() {
             bool released = false;

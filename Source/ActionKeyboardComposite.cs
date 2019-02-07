@@ -58,28 +58,28 @@ namespace Apos.Input {
         /// <returns>
         /// Returns true when at least 1 set triggers as held.
         /// </returns>
-        public bool Holding() {
-            bool holding = false;
+        public bool Held() {
+            bool held = false;
             foreach (ActionKeyboardSet aks in _actionSets) {
-                holding = aks.Holding();
-                if (holding) {
+                held = aks.Held();
+                if (held) {
                     break;
                 }
             }
-            return holding;
+            return held;
         }
         /// <returns>
         /// Returns true when at least 1 set was held and is now held.
         /// </returns>
-        public bool HoldingOnly() {
-            bool holdingOnly = false;
+        public bool HeldOnly() {
+            bool heldOnly = false;
             foreach (ActionKeyboardSet aks in _actionSets) {
-                holdingOnly = aks.HoldingOnly();
-                if (holdingOnly) {
+                heldOnly = aks.HeldOnly();
+                if (heldOnly) {
                     break;
                 }
             }
-            return holdingOnly;
+            return heldOnly;
         }
         /// <returns>
         /// Returns true when at least 1 set triggers as released.
