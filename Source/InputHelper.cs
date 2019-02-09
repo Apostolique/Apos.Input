@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -22,11 +23,12 @@ namespace Apos.Input {
         public static GamePadState[] OldGamePad => _oldGamePad;
         public static GamePadState[] NewGamePad => _newGamepad;
         public static GamePadCapabilities[] GamePadCapabilities => _gamePadCapabilities;
+        public static List<TextInputEventArgs> TextEvents => _textEvents;
 
         // Group: Public Functions
-        public static void Update() {
+        public static void UpdateSetup() {
             if (!_initiated) {
-                Setup();
+                setup();
             }
 
             _oldMouse = _newMouse;
@@ -48,9 +50,12 @@ namespace Apos.Input {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
         }
+        public static void Update() {
+            _textEvents.Clear();
+        }
 
         // Group: Private Functions
-        private static void Setup() {
+        private static void setup() {
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
             TouchPanel.GetCapabilities();
@@ -63,6 +68,12 @@ namespace Apos.Input {
             _newTouchCollection = TouchPanel.GetState();
 
             _initiated = true;
+
+            Window.TextInput += processTextInput;
+            _textEvents = new List<TextInputEventArgs>();
+        }
+        private static void processTextInput(object sender, TextInputEventArgs e) {
+            _textEvents.Add(e);
         }
 
         // Group: Private Variables
@@ -76,5 +87,6 @@ namespace Apos.Input {
         private static GamePadState[] _oldGamePad;
         private static GamePadState[] _newGamepad;
         private static GamePadCapabilities[] _gamePadCapabilities;
+        private static List<TextInputEventArgs> _textEvents;
     }
 }
