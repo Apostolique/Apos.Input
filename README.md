@@ -25,6 +25,20 @@ protected override void Initialize() {
 }
 ```
 
+In your game's `Update(GameTime gameTime)`, call the two functions:
+
+```csharp
+protected override void Update(GameTime gametime) {
+    //Call UpdateSetup at the start.
+    InputHelper.UpdateSetup();
+
+    //...
+
+    //Call Update at the end.
+    InputHelper.Update();
+}
+```
+
 ```csharp
 //Create an action to toggle fullscreen.
 //It should work on both Alt keys and Enter.
