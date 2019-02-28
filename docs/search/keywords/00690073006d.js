@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("ism",["Function"],[["IsMouseValid",,[["Apos.Input.ActionMouse",,,,0,"File:ActionMouse.cs:Apos.Input.ActionMouse.IsMouseValid","CSharpClass:Apos.Input.ActionMouse:IsMouseValid"]]]]);
+NDSearch.OnPrefixDataLoaded("ism",["Function"],[["IsMouseValid",,[["Apos.Input.ConditionMouse",,,,0,"File:ConditionMouse.cs:Apos.Input.ConditionMouse.IsMouseValid","CSharpClass:Apos.Input.ConditionMouse:IsMouseValid"]]]]);

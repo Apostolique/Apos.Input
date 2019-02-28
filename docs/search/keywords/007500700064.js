@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("upd",["Function"],[["Update",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.Update","CSharpClass:Apos.Input.InputHelper:Update"]]]]);
+NDSearch.OnPrefixDataLoaded("upd",["Function"],[["Update",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.Update","CSharpClass:Apos.Input.InputHelper:Update"]]],["UpdateSetup",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.UpdateSetup","CSharpClass:Apos.Input.InputHelper:UpdateSetup"]]]]);

@@ -1,1 +1,1 @@
-NDMenu.OnSectionLoaded("classes.js",[[1,"ActionGamePad"],[1,"ActionGamePadComposite"],[1,"ActionGamePadSet"],[1,"ActionKeyboard"],[1,"ActionKeyboardComposite"],[1,"ActionKeyboardSet"],[1,"ActionMouse"],[1,"ActionMouseComposite"],[1,"ActionMouseSet"],[1,"InputHelper"]]);
+NDMenu.OnSectionLoaded("classes.js",[[1,"Condition"],[1,"ConditionComposite"],[1,"ConditionGamePad"],[1,"ConditionKeyboard"],[1,"ConditionMouse"],[1,"ConditionSet"],[1,"ConditionTrigger"],[1,"InputHelper"]]);
