@@ -146,8 +146,13 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="sender">This gets ignored.</param>
         /// <param name="e">Contains a character and a key.</param>
-        private static void processTextInput(object sender, TextInputEventArgs e) {
-            _textEvents.Add(new KeyCharacter(e.Key, e.Character));
+        private static void processTextInput(object sender, object e) {
+            Type t = e.GetType();
+            PropertyInfo k = t.GetProperty("Key");
+            PropertyInfo c = t.GetProperty("Character");
+            if (k != null && c != null) {
+                _textEvents.Add(new KeyCharacter((Keys)k.GetValue(e), (char)c.GetValue(e)));
+            }
         }
 
         // Group: Private Variables
