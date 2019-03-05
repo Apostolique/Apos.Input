@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -72,7 +74,7 @@ namespace Apos.Input {
         /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
-        public static List<TextInputEventArgs> TextEvents => _textEvents;
+        public static List<KeyCharacter> TextEvents => _textEvents;
 
         // Group: Public Functions
 
@@ -129,8 +131,15 @@ namespace Apos.Input {
 
             _initiated = true;
 
-            Window.TextInput += processTextInput;
-            _textEvents = new List<TextInputEventArgs>();
+            //This is boring but whatever, it only gets called once.
+            //MonoGame doesn't offer TextInput under some platforms.
+            Type t = Window.GetType();
+            EventInfo e = t.GetEvent("TextInput");
+            if (e != null) {
+                Window.TextInput += processTextInput;
+            }
+
+            _textEvents = new List<KeyCharacter>();
         }
         /// <summary>
         /// This function receives TextInput events from the game window.
@@ -138,7 +147,7 @@ namespace Apos.Input {
         /// <param name="sender">This gets ignored.</param>
         /// <param name="e">Contains a character and a key.</param>
         private static void processTextInput(object sender, TextInputEventArgs e) {
-            _textEvents.Add(e);
+            _textEvents.Add(new KeyCharacter(e.Key, e.Character));
         }
 
         // Group: Private Variables
@@ -186,6 +195,6 @@ namespace Apos.Input {
         /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
-        private static List<TextInputEventArgs> _textEvents;
+        private static List<KeyCharacter> _textEvents;
     }
 }
