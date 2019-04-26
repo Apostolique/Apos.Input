@@ -88,13 +88,11 @@ namespace Apos.Input {
 
             _oldMouse = _newMouse;
             _oldKeyboard = _newKeyboard;
-            _oldGamePad = _newGamepad;
+            _newGamepad.CopyTo(_oldGamePad, 0);
 
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
 
-            _newGamepad = new GamePadState[GamePad.MaximumGamePadCount];
-            _gamePadCapabilities = new GamePadCapabilities[GamePad.MaximumGamePadCount];
             for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _newGamepad[i] = GamePad.GetState(i);
             }
@@ -122,9 +120,14 @@ namespace Apos.Input {
             _newKeyboard = Keyboard.GetState();
             TouchPanel.GetCapabilities();
 
+            _oldGamePad = new GamePadState[GamePad.MaximumGamePadCount];
             _newGamepad = new GamePadState[GamePad.MaximumGamePadCount];
+            _gamePadCapabilities = new GamePadCapabilities[GamePad.MaximumGamePadCount];
             for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _newGamepad[i] = GamePad.GetState(i);
+            }
+            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
             _newTouchCollection = TouchPanel.GetState();
