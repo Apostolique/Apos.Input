@@ -6,7 +6,7 @@ namespace Apos.Input {
     /// Checks various conditions on a specific gamepad button.
     /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
     /// </summary>
-    public class ConditionGamePad : Condition {
+    public class ConditionGamePad : ICondition {
 
         // Group: Constructors
 

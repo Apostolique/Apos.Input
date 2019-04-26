@@ -15,15 +15,15 @@ namespace Apos.Input {
         /// Empty ConditionSet.
         /// </summary>
         public ConditionSet() {
-            _needCondition = new List<Condition>();
-            _notCondition = new List<Condition>();
+            _needCondition = new List<ICondition>();
+            _notCondition = new List<ICondition>();
         }
         /// <summary>
         /// ConditionSet with initial values.
         /// </summary>
         /// <param name="needCondition">A list of needed conditions.</param>
         /// <param name="notCondition">A list of condition that must never be pressed.</param>
-        public ConditionSet(List<Condition> needCondition, List<Condition> notCondition) {
+        public ConditionSet(List<ICondition> needCondition, List<ICondition> notCondition) {
             _needCondition = needCondition;
             _notCondition = notCondition;
         }
@@ -56,7 +56,7 @@ namespace Apos.Input {
         }
         /// <param name="condition">Adds a condition that is needed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNeed(Condition condition) {
+        public ConditionSet AddNeed(ICondition condition) {
             _needCondition.Add(condition);
             return this;
         }
@@ -86,7 +86,7 @@ namespace Apos.Input {
         }
         /// <param name="condition">Adds a condition that must not be pressed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNot(Condition condition) {
+        public ConditionSet AddNot(ICondition condition) {
             _notCondition.Add(condition);
             return this;
         }
@@ -99,19 +99,19 @@ namespace Apos.Input {
             bool held = true;
             bool notHeld = false;
 
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 pressed = pressed || c.Pressed();
                 if (pressed) {
                     break;
                 }
             }
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 held = held && c.Held();
                 if (!held) {
                     break;
                 }
             }
-            foreach (Condition c in _notCondition) {
+            foreach (ICondition c in _notCondition) {
                 notHeld = notHeld || c.Held();
                 if (notHeld) {
                     break;
@@ -128,13 +128,13 @@ namespace Apos.Input {
             bool held = true;
             bool notHeld = false;
 
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 held = held && c.Held();
                 if (!held) {
                     break;
                 }
             }
-            foreach (Condition c in _notCondition) {
+            foreach (ICondition c in _notCondition) {
                 notHeld = notHeld || c.Held();
                 if (notHeld) {
                     break;
@@ -151,13 +151,13 @@ namespace Apos.Input {
             bool held = true;
             bool notHeld = false;
 
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 held = held && c.HeldOnly();
                 if (!held) {
                     break;
                 }
             }
-            foreach (Condition c in _notCondition) {
+            foreach (ICondition c in _notCondition) {
                 notHeld = notHeld || c.Held();
                 if (notHeld) {
                     break;
@@ -175,19 +175,19 @@ namespace Apos.Input {
             bool held = true;
             bool notHeld = false;
 
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 released = released || c.Released();
                 if (released) {
                     break;
                 }
             }
-            foreach (Condition c in _needCondition) {
+            foreach (ICondition c in _needCondition) {
                 held = held && (c.Held() || c.Released());
                 if (!held) {
                     break;
                 }
             }
-            foreach (Condition c in _notCondition) {
+            foreach (ICondition c in _notCondition) {
                 notHeld = notHeld || c.Held();
                 if (notHeld) {
                     break;
@@ -202,10 +202,10 @@ namespace Apos.Input {
         /// <summary>
         /// List of Condition that are needed.
         /// </summary>
-        private List<Condition> _needCondition;
+        private List<ICondition> _needCondition;
         /// <summary>
         /// List of Condition that must never be held.
         /// </summary>
-        private List<Condition> _notCondition;
+        private List<ICondition> _notCondition;
     }
 }

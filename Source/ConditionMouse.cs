@@ -6,7 +6,7 @@ namespace Apos.Input {
     /// Checks various conditions on a specific mouse button.
     /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
     /// </summary>
-    public class ConditionMouse : Condition {
+    public class ConditionMouse : ICondition {
 
         // Group: Constructors
 

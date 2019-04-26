@@ -2,7 +2,7 @@ namespace Apos.Input {
     /// <summary>
     /// Interface for a Condition.
     /// </summary>
-    public interface Condition {
+    public interface ICondition {
         /// <returns>Returns true when a condition was false and is now true.</returns>
         bool Pressed();
         /// <returns>Returns true when a condition is now true.</returns>

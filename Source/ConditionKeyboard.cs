@@ -5,7 +5,7 @@ namespace Apos.Input {
     /// Checks various conditions on a specific keyboard key.
     /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
     /// </summary>
-    public class ConditionKeyboard : Condition {
+    public class ConditionKeyboard : ICondition {
 
         // Group: Constructors
 
