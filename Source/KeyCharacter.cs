@@ -4,7 +4,7 @@ namespace Apos.Input {
     /// <summary>
     /// Stores a key with the character it produces.
     /// </summary>
-    public class KeyCharacter {
+    public struct KeyCharacter {
 
         // Group: Constructors
 
