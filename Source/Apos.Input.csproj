@@ -3,7 +3,7 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageId>Apos.Input</PackageId>
     <Title>Apos.Input</Title>
-    <Version>0.2.2</Version>
+    <Version>0.3.0</Version>
     <Description>Input library for MonoGame.</Description>
     <Authors>Jean-David Moisan</Authors>
     <Company>Vyne Enterprise Inc.</Company>
