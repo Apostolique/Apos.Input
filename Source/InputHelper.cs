@@ -118,7 +118,7 @@ namespace Apos.Input {
         private static void setup() {
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
-            TouchPanel.GetCapabilities();
+            _touchPanelCapabilities = TouchPanel.GetCapabilities();
 
             _oldGamePad = new GamePadState[GamePad.MaximumGamePadCount];
             _newGamepad = new GamePadState[GamePad.MaximumGamePadCount];
