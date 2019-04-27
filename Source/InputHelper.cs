@@ -141,8 +141,6 @@ namespace Apos.Input {
             if (e != null) {
                 Window.TextInput += processTextInput;
             }
-
-            _textEvents = new List<KeyCharacter>();
         }
         /// <summary>
         /// This function receives TextInput events from the game window.
@@ -203,6 +201,6 @@ namespace Apos.Input {
         /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
-        private static List<KeyCharacter> _textEvents;
+        private static List<KeyCharacter> _textEvents = new List<KeyCharacter>();
     }
 }
