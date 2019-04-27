@@ -1,1 +1,1 @@
-NDContentPage.OnToolTipsLoaded({});
+NDContentPage.OnToolTipsLoaded({66:"<div class=\"NDToolTip TStruct LCSharp\"><div class=\"NDClassPrototype\" id=\"NDClassPrototype66\"><div class=\"CPEntry TStruct Current\"><div class=\"CPModifiers\"><span class=\"SHKeyword\">public</span> <span class=\"SHKeyword\">struct</span></div><div class=\"CPName\"><span class=\"Qualifier\">Apos.&#8203;Input.</span>&#8203;KeyCharacter</div></div></div><div class=\"TTSummary\">Stores a key with the character it produces.</div></div>"});

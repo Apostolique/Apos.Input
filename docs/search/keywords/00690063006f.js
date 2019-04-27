@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ico",["Interface"],[["ICondition",,[["Apos.Input",,,,0,"File:ICondition.cs:Apos.Input.ICondition","CSharpClass:Apos.Input.ICondition"]]]]);

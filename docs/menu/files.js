@@ -1,1 +1,1 @@
-NDMenu.OnSectionLoaded("files.js",[[1,"Condition.cs"],[1,"ConditionComposite.cs"],[1,"ConditionGamePad.cs"],[1,"ConditionKeyboard.cs"],[1,"ConditionMouse.cs"],[1,"ConditionSet.cs"],[1,"ConditionTrigger.cs"],[1,"InputHelper.cs"]]);
+NDMenu.OnSectionLoaded("files.js",[[1,"ConditionComposite.cs"],[1,"ConditionGamePad.cs"],[1,"ConditionKeyboard.cs"],[1,"ConditionMouse.cs"],[1,"ConditionSet.cs"],[1,"ConditionTrigger.cs"],[1,"ICondition.cs"],[1,"InputHelper.cs"],[1,"KeyCharacter.cs"]]);
