@@ -35,12 +35,12 @@ protected override void Update(GameTime gametime) {
     //...
 
     //Call Update at the end.
-    InputHelper.Update();
+    InputHelper.UpdateCleanup();
 }
 ```
 
 ```csharp
-//Create a condition to toggle fullscreen.
+//Create a conditioCan to toggle fullscreen.
 //It should work on both Alt keys and Enter.
 var toggleFullScreen = new ConditionComposite();
 toggleFullscreen.AddSet(Keys.Enter).AddNeed(Keys.LeftAlt);

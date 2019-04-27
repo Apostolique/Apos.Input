@@ -106,7 +106,7 @@ namespace Apos.Input {
         /// <summary>
         /// Call this at the end of your update loop.
         /// </summary>
-        public static void Update() {
+        public static void UpdateCleanup() {
             _textEvents.Clear();
         }
 
