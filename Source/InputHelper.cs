@@ -14,6 +14,31 @@ namespace Apos.Input {
 
         // Group: Public Variables
 
+        /// <summary>
+        /// Available mouse buttons.
+        /// </summary>
+        public enum MouseButton {
+            /// <summary>
+            /// Left mouse button.
+            /// </summary>
+            LeftButton,
+            /// <summary>
+            /// Middle mouse button.
+            /// </summary>
+            MiddleButton,
+            /// <summary>
+            /// Right mouse button.
+            /// </summary>
+            RightButton,
+            /// <summary>
+            /// XButton1 mouse button.
+            /// </summary>
+            XButton1,
+            /// <summary>
+            /// XButton2 mouse button.
+            /// </summary>
+            XButton2
+        }
         /// <value>Pass your game class here.</value>
         public static Game Game {
             get;
@@ -75,6 +100,10 @@ namespace Apos.Input {
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
         public static List<KeyCharacter> TextEvents => _textEvents;
+        /// <summary>
+        /// Maps a MouseButton to a function that can extract a specific ButtonState from a MouseState.
+        /// </summary>
+        public static Dictionary<MouseButton, Func<MouseState, ButtonState>> MouseButtons => _mouseButtons;
 
         // Group: Public Functions
 
@@ -202,5 +231,12 @@ namespace Apos.Input {
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
         private static List<KeyCharacter> _textEvents = new List<KeyCharacter>();
+        private static Dictionary<MouseButton, Func<MouseState, ButtonState>> _mouseButtons = new Dictionary<MouseButton, Func<MouseState, ButtonState>> {
+            {MouseButton.LeftButton, s => s.LeftButton},
+            {MouseButton.MiddleButton, s => s.MiddleButton},
+            {MouseButton.RightButton, s => s.RightButton},
+            {MouseButton.XButton1, s => s.XButton1},
+            {MouseButton.XButton2, s => s.XButton2},
+        };
     }
 }

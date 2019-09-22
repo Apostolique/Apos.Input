@@ -42,7 +42,7 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="button">A mouse button that will have it's own set.</param>
         /// <returns>Returns the set for easy function chaining.</returns>
-        public ConditionSet AddSet(Func<MouseState, ButtonState> button) {
+        public ConditionSet AddSet(InputHelper.MouseButton button) {
             ConditionSet newSet = new ConditionSet().AddNeed(button);
             AddSet(newSet);
             return newSet;

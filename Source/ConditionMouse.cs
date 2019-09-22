@@ -11,7 +11,7 @@ namespace Apos.Input {
         // Group: Constructors
 
         /// <param name="needButton">The button to operate on.</param>
-        public ConditionMouse(Func<MouseState, ButtonState> needButton) {
+        public ConditionMouse(InputHelper.MouseButton needButton) {
             _needButton = needButton;
         }
 
@@ -37,24 +37,29 @@ namespace Apos.Input {
         // Group: Static Functions
 
         /// <returns>Returns true when a button was not pressed and is now pressed.</returns>
-        public static bool Pressed(Func<MouseState, ButtonState> button) {
-            return button(InputHelper.NewMouse) == ButtonState.Pressed && button(InputHelper.OldMouse) == ButtonState.Released;
+        public static bool Pressed(InputHelper.MouseButton button) {
+            return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
+                   InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Released;
         }
         /// <returns>Returns true when a button is now pressed.</returns>
-        public static bool Held(Func<MouseState, ButtonState> button) {
-            return button(InputHelper.NewMouse) == ButtonState.Pressed;
+        public static bool Held(InputHelper.MouseButton button) {
+            return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now pressed.</returns>
-        public static bool HeldOnly(Func<MouseState, ButtonState> button) {
-            return button(InputHelper.NewMouse) == ButtonState.Pressed && button(InputHelper.OldMouse) == ButtonState.Pressed;
+        public static bool HeldOnly(InputHelper.MouseButton button) {
+            return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
+                   InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now not pressed.</returns>
-        public static bool Released(Func<MouseState, ButtonState> button) {
-            return button(InputHelper.NewMouse) == ButtonState.Released && button(InputHelper.OldMouse) == ButtonState.Pressed;
+        public static bool Released(InputHelper.MouseButton button) {
+            return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Released &&
+                   InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
         /// <returns>Returns true when the mouse is within the game window.</returns>
         public static bool IsMouseValid(bool IsActive) {
-            if (IsActive && InputHelper.NewMouse.X >= 0 && InputHelper.NewMouse.X <= InputHelper.WindowWidth && InputHelper.NewMouse.Y >= 0 && InputHelper.NewMouse.Y <= InputHelper.WindowHeight) {
+            if (IsActive &&
+                InputHelper.NewMouse.X >= 0 && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
+                InputHelper.NewMouse.Y >= 0 && InputHelper.NewMouse.Y <= InputHelper.WindowHeight) {
                 return true;
             }
             return false;
@@ -65,6 +70,6 @@ namespace Apos.Input {
         /// <summary>
         /// The button that will be checked.
         /// </summary>
-        private Func<MouseState, ButtonState> _needButton;
+        private InputHelper.MouseButton _needButton;
     }
 }

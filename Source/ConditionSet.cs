@@ -43,7 +43,7 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="button">Adds a new needed mouse button.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNeed(Func<MouseState, ButtonState> button) {
+        public ConditionSet AddNeed(InputHelper.MouseButton button) {
             return AddNeed(new ConditionMouse(button));
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="button">Adds a mouse button that must not be pressed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNot(Func<MouseState, ButtonState> button) {
+        public ConditionSet AddNot(InputHelper.MouseButton button) {
             return AddNot(new ConditionMouse(button));
         }
         /// <summary>
