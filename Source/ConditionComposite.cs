@@ -51,9 +51,10 @@ namespace Apos.Input {
         /// This implicitly creates a ConditionSet.
         /// </summary>
         /// <param name="button">A gamepad button that will have it's own set.</param>
+        /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         /// <returns>Returns the set for easy function chaining.</returns>
-        public ConditionSet AddSet(Func<GamePadState[], ButtonState> button) {
-            ConditionSet newSet = new ConditionSet().AddNeed(button);
+        public ConditionSet AddSet(InputHelper.GamePadButton button, int gamePadIndex) {
+            ConditionSet newSet = new ConditionSet().AddNeed(button, gamePadIndex);
             AddSet(newSet);
             return newSet;
         }

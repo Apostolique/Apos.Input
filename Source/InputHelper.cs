@@ -39,6 +39,39 @@ namespace Apos.Input {
             /// </summary>
             XButton2
         }
+        /// <summary>Available gamepad buttons.</summary>
+        public enum GamePadButton {
+            /// <summary>A button.</summary>
+            A,
+            /// <summary>B button.</summary>
+            B,
+            /// <summary>Back button.</summary>
+            Back,
+            /// <summary>X button.</summary>
+            X,
+            /// <summary>Y button.</summary>
+            Y,
+            /// <summary>Start button.</summary>
+            Start,
+            /// <summary>LeftShould button.</summary>
+            LeftShoulder,
+            /// <summary>LeftStick button.</summary>
+            LeftStick,
+            /// <summary>RightShould button.</summary>
+            RightShoulder,
+            /// <summary>RightStick button.</summary>
+            RightStick,
+            /// <summary>BigButton button.</summary>
+            BigButton,
+            /// <summary>DPad down button.</summary>
+            Down,
+            /// <summary>DPad left button.</summary>
+            Left,
+            /// <summary>DPad right button.</summary>
+            Right,
+            /// <summary>DPad up button.</summary>
+            Up
+        }
         /// <value>Pass your game class here.</value>
         public static Game Game {
             get;
@@ -104,6 +137,10 @@ namespace Apos.Input {
         /// Maps a MouseButton to a function that can extract a specific ButtonState from a MouseState.
         /// </summary>
         public static Dictionary<MouseButton, Func<MouseState, ButtonState>> MouseButtons => _mouseButtons;
+        /// <summary>
+        /// Maps a GamePadButton to a function that can extract a specific ButtonState from a GamePadState.
+        /// </summary>
+        public static Dictionary<GamePadButton, Func<GamePadState[], int, ButtonState>> GamePadButtons => _gamePadButtons;
 
         // Group: Public Functions
 
@@ -237,6 +274,23 @@ namespace Apos.Input {
             {MouseButton.RightButton, s => s.RightButton},
             {MouseButton.XButton1, s => s.XButton1},
             {MouseButton.XButton2, s => s.XButton2},
+        };
+        private static Dictionary<GamePadButton, Func<GamePadState[], int, ButtonState>> _gamePadButtons = new Dictionary<GamePadButton, Func<GamePadState[], int, ButtonState>> {
+            {GamePadButton.A, (s, i) => s[i].Buttons.A},
+            {GamePadButton.B, (s, i) => s[i].Buttons.B},
+            {GamePadButton.Back, (s, i) => s[i].Buttons.Back},
+            {GamePadButton.X, (s, i) => s[i].Buttons.X},
+            {GamePadButton.Y, (s, i) => s[i].Buttons.Y},
+            {GamePadButton.Start, (s, i) => s[i].Buttons.Start},
+            {GamePadButton.LeftShoulder, (s, i) => s[i].Buttons.LeftShoulder},
+            {GamePadButton.LeftStick, (s, i) => s[i].Buttons.LeftStick},
+            {GamePadButton.RightShoulder, (s, i) => s[i].Buttons.RightShoulder},
+            {GamePadButton.RightStick, (s, i) => s[i].Buttons.RightStick},
+            {GamePadButton.BigButton, (s, i) => s[i].Buttons.BigButton},
+            {GamePadButton.Down, (s, i) => s[i].DPad.Down},
+            {GamePadButton.Left, (s, i) => s[i].DPad.Left},
+            {GamePadButton.Right, (s, i) => s[i].DPad.Right},
+            {GamePadButton.Up, (s, i) => s[i].DPad.Up},
         };
     }
 }

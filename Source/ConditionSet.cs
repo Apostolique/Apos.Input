@@ -50,9 +50,10 @@ namespace Apos.Input {
         /// This implicitly creates a ConditionGamePad.
         /// </summary>
         /// <param name="button">Adds a new needed gamepad button.</param>
+        /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNeed(Func<GamePadState[], ButtonState> button) {
-            return AddNeed(new ConditionGamePad(button));
+        public ConditionSet AddNeed(InputHelper.GamePadButton button, int gamePadIndex) {
+            return AddNeed(new ConditionGamePad(button, gamePadIndex));
         }
         /// <param name="condition">Adds a condition that is needed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
@@ -80,9 +81,10 @@ namespace Apos.Input {
         /// This implicitly creates a ConditionGamePad.
         /// </summary>
         /// <param name="button">Adds a gamepad button that must not be pressed.</param>
+        /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNot(Func<GamePadState[], ButtonState> button) {
-            return AddNot(new ConditionGamePad(button));
+        public ConditionSet AddNot(InputHelper.GamePadButton button, int gamePadIndex) {
+            return AddNot(new ConditionGamePad(button, gamePadIndex));
         }
         /// <param name="condition">Adds a condition that must not be pressed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
