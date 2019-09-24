@@ -14,29 +14,17 @@ namespace Apos.Input {
 
         // Group: Public Variables
 
-        /// <summary>
-        /// Available mouse buttons.
-        /// </summary>
+        /// <summary>Available mouse buttons.</summary>
         public enum MouseButton {
-            /// <summary>
-            /// Left mouse button.
-            /// </summary>
+            /// <summary>Left mouse button.</summary>
             LeftButton,
-            /// <summary>
-            /// Middle mouse button.
-            /// </summary>
+            /// <summary>Middle mouse button.</summary>
             MiddleButton,
-            /// <summary>
-            /// Right mouse button.
-            /// </summary>
+            /// <summary>Right mouse button.</summary>
             RightButton,
-            /// <summary>
-            /// XButton1 mouse button.
-            /// </summary>
+            /// <summary>XButton1 mouse button.</summary>
             XButton1,
-            /// <summary>
-            /// XButton2 mouse button.
-            /// </summary>
+            /// <summary>XButton2 mouse button.</summary>
             XButton2
         }
         /// <summary>Available gamepad buttons.</summary>
