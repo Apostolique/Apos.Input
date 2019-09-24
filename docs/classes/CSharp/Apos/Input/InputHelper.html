@@ -18,6 +18,18 @@
  <div class="CTitle">Public Variables</div>
 </div>
 
+<a name="MouseButton"></a><a name="Topic35"></a><div class="CTopic TEnumeration LCSharp">
+ <div class="CTitle">MouseButton</div>
+ <div id="NDPrototype35" class="NDPrototype NoParameterForm"><span class="SHKeyword">public enum</span> MouseButton</div>
+ <div class="CBody"><p>Available mouse buttons.</p></div>
+</div>
+
+<a name="GamePadButton"></a><a name="Topic36"></a><div class="CTopic TEnumeration LCSharp">
+ <div class="CTitle">GamePadButton</div>
+ <div id="NDPrototype36" class="NDPrototype NoParameterForm"><span class="SHKeyword">public enum</span> GamePadButton</div>
+ <div class="CBody"><p>Available gamepad buttons.</p></div>
+</div>
+
 <a name="Game"></a><a name="Topic123"></a><div class="CTopic TProperty LCSharp">
  <div class="CTitle">Game</div>
  <div id="NDPrototype123" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Game Game { <span class="SHKeyword">get</span>; <span class="SHKeyword">set</span> }</div>
@@ -106,6 +118,18 @@
  <div class="CTitle">TextEvents</div>
  <div id="NDPrototype25" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> List&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.KeyCharacter" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,66);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >KeyCharacter</a>&gt; TextEvents { <span class="SHKeyword">get</span> }</div>
  <div class="CBody"><p>Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.</p></div>
+</div>
+
+<a name="MouseButtons"></a><a name="Topic37"></a><div class="CTopic TProperty LCSharp">
+ <div class="CTitle">MouseButtons</div>
+ <div id="NDPrototype37" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,35);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; MouseButtons { <span class="SHKeyword">get</span> }</div>
+ <div class="CBody"><p>Maps a MouseButton to a function that can extract a specific ButtonState from a MouseState.</p></div>
+</div>
+
+<a name="GamePadButtons"></a><a name="Topic40"></a><div class="CTopic TProperty LCSharp">
+ <div class="CTitle">GamePadButtons</div>
+ <div id="NDPrototype40" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,36);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; GamePadButtons { <span class="SHKeyword">get</span> }</div>
+ <div class="CBody"><p>Maps a GamePadButton to a function that can extract a specific ButtonState from a GamePadState.</p></div>
 </div>
 
 <a name="Public_Functions"></a><a name="Topic74"></a><div class="CTopic TGroup LCSharp">
@@ -204,10 +228,20 @@
  <div class="CBody"><p>Gives info about a touch panel.</p></div>
 </div>
 
-<a name="_textEvents"></a><a name="Topic65"></a><div class="CTopic TVariable LCSharp last">
+<a name="_textEvents"></a><a name="Topic65"></a><div class="CTopic TVariable LCSharp">
  <div class="CTitle">_textEvents</div>
  <div id="NDPrototype65" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> List&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.KeyCharacter" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,66);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >KeyCharacter</a>&gt; _textEvents</div>
  <div class="CBody"><p>Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.</p></div>
+</div>
+
+<a name="_mouseButtons"></a><a name="Topic102"></a><div class="CTopic TVariable LCSharp">
+ <div class="CTitle">_mouseButtons</div>
+ <div id="NDPrototype102" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,35);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; _mouseButtons</div>
+</div>
+
+<a name="_gamePadButtons"></a><a name="Topic103"></a><div class="CTopic TVariable LCSharp last">
+ <div class="CTitle">_gamePadButtons</div>
+ <div id="NDPrototype103" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,36);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; _gamePadButtons</div>
 </div>
 
 </body></html>

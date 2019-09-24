@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("mou",["Enumeration","Property"],[["MouseButton",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.MouseButton","CSharpClass:Apos.Input.InputHelper:MouseButton"]]],["MouseButtons",,[["Apos.Input.InputHelper",,,,1,"File:InputHelper.cs:Apos.Input.InputHelper.MouseButtons","CSharpClass:Apos.Input.InputHelper:MouseButtons"]]]]);
