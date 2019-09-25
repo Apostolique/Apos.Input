@@ -12,7 +12,7 @@ namespace Apos.Input {
 
         /// <param name="needButton">The button to operate on.</param>
         /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
-        public ConditionGamePad(InputHelper.GamePadButton needButton, int gamePadIndex) {
+        public ConditionGamePad(GamePadButton needButton, int gamePadIndex) {
             _needButton = needButton;
             _gamePadIndex = gamePadIndex;
         }
@@ -39,21 +39,21 @@ namespace Apos.Input {
         // Group: Static Functions
 
         /// <returns>Returns true when a button was not pressed and is now pressed.</returns>
-        public static bool Pressed(InputHelper.GamePadButton button, int gamePadIndex) {
+        public static bool Pressed(GamePadButton button, int gamePadIndex) {
             return InputHelper.GamePadButtons[button](InputHelper.NewGamePad, gamePadIndex) == ButtonState.Pressed &&
                    InputHelper.GamePadButtons[button](InputHelper.OldGamePad, gamePadIndex) == ButtonState.Released;
         }
         /// <returns>Returns true when a button is now pressed.</returns>
-        public static bool Held(InputHelper.GamePadButton button, int gamePadIndex) {
+        public static bool Held(GamePadButton button, int gamePadIndex) {
             return InputHelper.GamePadButtons[button](InputHelper.NewGamePad, gamePadIndex) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now pressed.</returns>
-        public static bool HeldOnly(InputHelper.GamePadButton button, int gamePadIndex) {
+        public static bool HeldOnly(GamePadButton button, int gamePadIndex) {
             return InputHelper.GamePadButtons[button](InputHelper.NewGamePad, gamePadIndex) == ButtonState.Pressed &&
                    InputHelper.GamePadButtons[button](InputHelper.OldGamePad, gamePadIndex) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now not pressed.</returns>
-        public static bool Released(InputHelper.GamePadButton button, int gamePadIndex) {
+        public static bool Released(GamePadButton button, int gamePadIndex) {
             return InputHelper.GamePadButtons[button](InputHelper.NewGamePad, gamePadIndex) == ButtonState.Released &&
                    InputHelper.GamePadButtons[button](InputHelper.OldGamePad, gamePadIndex) == ButtonState.Pressed;
         }
@@ -63,7 +63,7 @@ namespace Apos.Input {
         /// <summary>
         /// The button that will be checked.
         /// </summary>
-        private InputHelper.GamePadButton _needButton;
+        private GamePadButton _needButton;
         /// <summary>
         /// The index for the gamepad that will be checked.
         /// </summary>

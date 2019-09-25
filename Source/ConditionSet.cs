@@ -43,7 +43,7 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="button">Adds a new needed mouse button.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNeed(InputHelper.MouseButton button) {
+        public ConditionSet AddNeed(MouseButton button) {
             return AddNeed(new ConditionMouse(button));
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Apos.Input {
         /// <param name="button">Adds a new needed gamepad button.</param>
         /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNeed(InputHelper.GamePadButton button, int gamePadIndex) {
+        public ConditionSet AddNeed(GamePadButton button, int gamePadIndex) {
             return AddNeed(new ConditionGamePad(button, gamePadIndex));
         }
         /// <param name="condition">Adds a condition that is needed.</param>
@@ -74,7 +74,7 @@ namespace Apos.Input {
         /// </summary>
         /// <param name="button">Adds a mouse button that must not be pressed.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNot(InputHelper.MouseButton button) {
+        public ConditionSet AddNot(MouseButton button) {
             return AddNot(new ConditionMouse(button));
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace Apos.Input {
         /// <param name="button">Adds a gamepad button that must not be pressed.</param>
         /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
-        public ConditionSet AddNot(InputHelper.GamePadButton button, int gamePadIndex) {
+        public ConditionSet AddNot(GamePadButton button, int gamePadIndex) {
             return AddNot(new ConditionGamePad(button, gamePadIndex));
         }
         /// <param name="condition">Adds a condition that must not be pressed.</param>

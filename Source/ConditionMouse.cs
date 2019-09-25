@@ -11,7 +11,7 @@ namespace Apos.Input {
         // Group: Constructors
 
         /// <param name="needButton">The button to operate on.</param>
-        public ConditionMouse(InputHelper.MouseButton needButton) {
+        public ConditionMouse(MouseButton needButton) {
             _needButton = needButton;
         }
 
@@ -37,21 +37,21 @@ namespace Apos.Input {
         // Group: Static Functions
 
         /// <returns>Returns true when a button was not pressed and is now pressed.</returns>
-        public static bool Pressed(InputHelper.MouseButton button) {
+        public static bool Pressed(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Released;
         }
         /// <returns>Returns true when a button is now pressed.</returns>
-        public static bool Held(InputHelper.MouseButton button) {
+        public static bool Held(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now pressed.</returns>
-        public static bool HeldOnly(InputHelper.MouseButton button) {
+        public static bool HeldOnly(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
         /// <returns>Returns true when a button was pressed and is now not pressed.</returns>
-        public static bool Released(InputHelper.MouseButton button) {
+        public static bool Released(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Released &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
@@ -70,6 +70,6 @@ namespace Apos.Input {
         /// <summary>
         /// The button that will be checked.
         /// </summary>
-        private InputHelper.MouseButton _needButton;
+        private MouseButton _needButton;
     }
 }
