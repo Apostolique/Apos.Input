@@ -9,7 +9,7 @@
     <Company>Vyne Enterprise Inc.</Company>
     <Copyright>Copyright 2018</Copyright>
     <PackageTags>gamedev;monogame;input</PackageTags>
-    <PackageIconUrl>https://raw.githubusercontent.com/Apostolique/Apos.Input/master/Images/Icon.png</PackageIconUrl>
+    <PackageIcon>Icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Apostolique/Apos.Input</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Apostolique/Apos.Input</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,5 +19,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../Images/Icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
