@@ -18,7 +18,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Portable" PrivateAssets="All" Version="3.6.0.1625" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL.Core" PrivateAssets="All" Version="3.7.0.7" />
   </ItemGroup>
   <ItemGroup>
     <None Include="../Images/Icon.png" Pack="true" PackagePath="" />
