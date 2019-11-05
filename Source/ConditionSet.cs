@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input {
     /// <summary>
-    /// Combines a bunch of Condition to make complex condition sets.
-    /// Operates over conditions that are needed and conditions that must not be pressed.
+    /// Combines a bunch of ICondition to make complex condition sequences.
+    /// Operates over conditions that are needed and conditions that must not be activated.
     /// </summary>
     public class ConditionSet {
 
@@ -21,7 +21,7 @@ namespace Apos.Input {
         /// ConditionSet with initial values.
         /// </summary>
         /// <param name="needConditions">A list of needed conditions.</param>
-        /// <param name="notConditions">A list of condition that must never be pressed.</param>
+        /// <param name="notConditions">A list of condition that must not be activated.</param>
         public ConditionSet(List<ICondition> needConditions, List<ICondition> notConditions) {
             _needConditions = needConditions;
             _notConditions = notConditions;
@@ -85,7 +85,7 @@ namespace Apos.Input {
         public ConditionSet AddNot(GamePadButton button, int gamePadIndex) {
             return AddNot(new ConditionGamePad(button, gamePadIndex));
         }
-        /// <param name="condition">Adds a condition that must not be pressed.</param>
+        /// <param name="condition">Adds a condition that must not be activated.</param>
         /// <returns>Returns itself for easy function chaining.</returns>
         public ConditionSet AddNot(ICondition condition) {
             _notConditions.Add(condition);
