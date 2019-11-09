@@ -13,10 +13,7 @@ namespace Apos.Input {
         /// <summary>
         /// Empty ConditionSet.
         /// </summary>
-        public ConditionSet() {
-            _needConditions = new List<ICondition>();
-            _notConditions = new List<ICondition>();
-        }
+        public ConditionSet() : this(new List<ICondition>(), new List<ICondition>()) { }
         /// <summary>
         /// ConditionSet with initial values.
         /// </summary>

@@ -14,9 +14,7 @@ namespace Apos.Input {
         /// <summary>
         /// Empty ConditionTrigger.
         /// </summary>
-        public ConditionTrigger() {
-            _conditions = new List<Func<bool>>();
-        }
+        public ConditionTrigger() : this(new List<Func<bool>>()) { }
         /// <summary>
         /// ConditionTrigger with initial values.
         /// </summary>

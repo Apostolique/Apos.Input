@@ -13,9 +13,7 @@ namespace Apos.Input {
         /// <summary>
         /// Empty ConditionComposite.
         /// </summary>
-        public ConditionComposite() {
-            _conditionSets = new List<ConditionSet>();
-        }
+        public ConditionComposite() : this(new List<ConditionSet>()) { }
         /// <summary>
         /// ConditionComposite with initial ConditionSets.
         /// </summary>
