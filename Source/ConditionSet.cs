@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input {
@@ -14,6 +14,10 @@ namespace Apos.Input {
         /// Empty ConditionSet.
         /// </summary>
         public ConditionSet() : this(new List<ICondition>(), new List<ICondition>()) { }
+        /// <summary>
+        /// ConditionSet with initial needed conditions.
+        /// </summary>
+        public ConditionSet(List<ICondition> needConditions) : this(needConditions, new List<ICondition>()) { }
         /// <summary>
         /// ConditionSet with initial values.
         /// </summary>
