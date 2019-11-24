@@ -144,10 +144,11 @@ namespace Apos.Input {
 
             //This is boring but whatever, it only gets called once.
             //MonoGame doesn't offer TextInput under some platforms.
-            Type t = Window.GetType();
-            EventInfo e = t.GetEvent("TextInput");
+            EventInfo e = Window.GetType().GetEvent("TextInput");
             if (e != null) {
-                Window.TextInput += processTextInput;
+                Action<object, object> handler = processTextInput;
+                Delegate convertedHandler = ConvertDelegate(handler, e.EventHandlerType);
+                e.AddEventHandler(Window, convertedHandler);
             }
         }
         /// <summary>
@@ -162,6 +163,9 @@ namespace Apos.Input {
             if (k != null && c != null) {
                 _textEvents.Add(new KeyCharacter((Keys)k.GetValue(e), (char)c.GetValue(e)));
             }
+        }
+        private static Delegate ConvertDelegate(Delegate originalDelegate, Type targetDelegateType) {
+            return Delegate.CreateDelegate(targetDelegateType, originalDelegate.Target, originalDelegate.Method);
         }
 
         // Group: Private Variables
