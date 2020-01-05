@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input {
@@ -11,12 +12,13 @@ namespace Apos.Input {
         // Group: Constructors
 
         /// <summary>
-        /// Empty ConditionSet.
+        /// ConditionSet with initial needed conditions or empty.
         /// </summary>
-        public ConditionSet() : this(new List<ICondition>(), new List<ICondition>()) { }
+        public ConditionSet(params ICondition[] needConditions) : this(needConditions.ToList()) { }
         /// <summary>
         /// ConditionSet with initial needed conditions.
         /// </summary>
+        /// <param name="needConditions">A list of needed conditions.</param>
         public ConditionSet(List<ICondition> needConditions) : this(needConditions, new List<ICondition>()) { }
         /// <summary>
         /// ConditionSet with initial values.

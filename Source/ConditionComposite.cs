@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input {
@@ -11,9 +12,10 @@ namespace Apos.Input {
         // Group: Constructors
 
         /// <summary>
-        /// Empty ConditionComposite.
+        /// ConditionComposite with initial ConditionSets or empty.
         /// </summary>
-        public ConditionComposite() : this(new List<ConditionSet>()) { }
+        /// <param name="conditionSets">A list of ConditionSets.</param>
+        public ConditionComposite(params ConditionSet[] conditionSets) : this(conditionSets.ToList()) { }
         /// <summary>
         /// ConditionComposite with initial ConditionSets.
         /// </summary>
