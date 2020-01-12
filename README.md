@@ -21,7 +21,7 @@ In your game's `Initialize()`, pass the game class to InputHelper.Game:
 
 ```csharp
 protected override void Initialize() {
-    InputHelper.Game = this;
+    InputHelper.Setup(this);
 }
 ```
 
