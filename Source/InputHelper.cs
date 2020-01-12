@@ -87,43 +87,12 @@ namespace Apos.Input {
         // Group: Public Functions
 
         /// <summary>
-        /// Call this at the beginning of your update loop.
+        /// Call Setup in the game's LoadContent.
         /// </summary>
-        public static void UpdateSetup() {
-            if (!_initiated) {
-                setup();
-            }
+        /// <param name="game">Your game object.</param>
+        public static void Setup(Game game) {
+            Game = game;
 
-            _oldMouse = _newMouse;
-            _oldKeyboard = _newKeyboard;
-            _newGamepad.CopyTo(_oldGamePad, 0);
-
-            _newMouse = Mouse.GetState();
-            _newKeyboard = Keyboard.GetState();
-
-            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
-                _newGamepad[i] = GamePad.GetState(i);
-            }
-            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
-                _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
-            }
-
-            _newTouchCollection = TouchPanel.GetState();
-            _touchPanelCapabilities = TouchPanel.GetCapabilities();
-        }
-        /// <summary>
-        /// Call this at the end of your update loop.
-        /// </summary>
-        public static void UpdateCleanup() {
-            _textEvents.Clear();
-        }
-
-        // Group: Private Functions
-
-        /// <summary>
-        /// This is called automatically on the first update setup call.
-        /// </summary>
-        private static void setup() {
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
@@ -164,6 +133,37 @@ namespace Apos.Input {
                 eInfo.AddEventHandler(Window, d);
             }
         }
+
+        /// <summary>
+        /// Call this at the beginning of your update loop.
+        /// </summary>
+        public static void UpdateSetup() {
+            _oldMouse = _newMouse;
+            _oldKeyboard = _newKeyboard;
+            _newGamepad.CopyTo(_oldGamePad, 0);
+
+            _newMouse = Mouse.GetState();
+            _newKeyboard = Keyboard.GetState();
+
+            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                _newGamepad[i] = GamePad.GetState(i);
+            }
+            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
+            }
+
+            _newTouchCollection = TouchPanel.GetState();
+            _touchPanelCapabilities = TouchPanel.GetCapabilities();
+        }
+        /// <summary>
+        /// Call this at the end of your update loop.
+        /// </summary>
+        public static void UpdateCleanup() {
+            _textEvents.Clear();
+        }
+
+        // Group: Private Functions
+
         /// <summary>
         /// This class is designed to help with receiving text input events through reflection magic.
         /// </summary>
