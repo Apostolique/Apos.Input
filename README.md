@@ -17,7 +17,7 @@ Input library for MonoGame.
 
 ## Usage samples
 
-In your game's `Initialize()`, pass the game class to InputHelper.Game:
+In your game's `Initialize()`, pass the game class to `InputHelper.Setup()`:
 
 ```csharp
 protected override void Initialize() {
