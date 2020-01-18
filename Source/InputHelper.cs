@@ -102,8 +102,6 @@ namespace Apos.Input {
             _gamePadCapabilities = new GamePadCapabilities[GamePad.MaximumGamePadCount];
             for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _newGamepad[i] = GamePad.GetState(i);
-            }
-            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
@@ -147,8 +145,6 @@ namespace Apos.Input {
 
             for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _newGamepad[i] = GamePad.GetState(i);
-            }
-            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
