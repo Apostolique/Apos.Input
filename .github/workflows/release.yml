@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build Source/Apos.Input.csproj --configuration Release
     - name: Pack with dotnet
       run: dotnet pack Source/Apos.Input.csproj --output nuget-packages --configuration Release
     - name: Push with dotnet
