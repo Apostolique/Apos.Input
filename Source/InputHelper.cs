@@ -107,8 +107,6 @@ namespace Apos.Input {
 
             _newTouchCollection = TouchPanel.GetState();
 
-            _initiated = true;
-
             //This is boring but whatever, it only gets called once.
             //MonoGame doesn't offer TextInput under some platforms.
             EventInfo eInfo = Window.GetType().GetEvent("TextInput");
@@ -190,10 +188,6 @@ namespace Apos.Input {
 
         // Group: Private Variables
 
-        /// <summary>
-        /// Whether setup has been called or not.
-        /// </summary>
-        private static bool _initiated = false;
         /// <summary>
         /// The mouse's previous state.
         /// </summary>
