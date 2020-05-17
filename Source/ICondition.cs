@@ -1,6 +1,6 @@
 namespace Apos.Input {
     /// <summary>
-    /// Interface for a Condition.
+    /// Interface for a condition.
     /// </summary>
     public interface ICondition {
         /// <returns>Returns true when a condition was false and is now true.</returns>

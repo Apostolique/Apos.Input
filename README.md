@@ -41,10 +41,14 @@ protected override void Update(GameTime gametime) {
 
 ```csharp
 //Create a condition to toggle fullscreen.
-//It should work on both Alt keys and Enter.
-var toggleFullScreen = new ConditionComposite();
-toggleFullscreen.AddSet(Keys.Enter).AddNeed(Keys.LeftAlt);
-toggleFullscreen.AddSet(Keys.Enter).AddNeed(Keys.RightAlt);
+//It should work on either Alt keys with Enter.
+var toggleFullScreen = new AllCondition(
+    new AnyCondition(
+        new KeyboardCondition(Keys.LeftAlt),
+        new KeyboardCondition(Keys.RightAlt)
+    ),
+    new KeyboardCondition(Keys.Enter)
+);
 
 //To check if toggleFullscreen is triggered:
 if (toggleFullscreen.Pressed()) {
