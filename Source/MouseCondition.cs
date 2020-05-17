@@ -5,51 +5,51 @@ namespace Apos.Input {
     /// Checks various conditions on a specific mouse button.
     /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
     /// </summary>
-    public class ConditionMouse : ICondition {
+    public class MouseCondition : ICondition {
 
         // Group: Constructors
 
-        /// <param name="needButton">The button to operate on.</param>
-        public ConditionMouse(MouseButton needButton) {
-            _needButton = needButton;
+        /// <param name="button">The button to operate on.</param>
+        public MouseCondition(MouseButton button) {
+            _button = button;
         }
 
         // Group: Public Functions
 
-        /// <returns>Returns true when a button was not pressed and is now pressed.</returns>
+        /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed() {
-            return Pressed(_needButton) && IsMouseValid(InputHelper.IsActive);
+            return Pressed(_button) && IsMouseValid(InputHelper.IsActive);
         }
-        /// <returns>Returns true when a button is now pressed.</returns>
+        /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held() {
-            return Held(_needButton) && IsMouseValid(InputHelper.IsActive);
+            return Held(_button) && IsMouseValid(InputHelper.IsActive);
         }
-        /// <returns>Returns true when a button was pressed and is now pressed.</returns>
+        /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly() {
-            return HeldOnly(_needButton) && IsMouseValid(InputHelper.IsActive);
+            return HeldOnly(_button) && IsMouseValid(InputHelper.IsActive);
         }
-        /// <returns>Returns true when a button was pressed and is now not pressed.</returns>
+        /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released() {
-            return Released(_needButton) && IsMouseValid(InputHelper.IsActive);
+            return Released(_button) && IsMouseValid(InputHelper.IsActive);
         }
 
         // Group: Static Functions
 
-        /// <returns>Returns true when a button was not pressed and is now pressed.</returns>
+        /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public static bool Pressed(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Released;
         }
-        /// <returns>Returns true when a button is now pressed.</returns>
+        /// <returns>Returns true when the button is now pressed.</returns>
         public static bool Held(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed;
         }
-        /// <returns>Returns true when a button was pressed and is now pressed.</returns>
+        /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public static bool HeldOnly(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Pressed &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
-        /// <returns>Returns true when a button was pressed and is now not pressed.</returns>
+        /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public static bool Released(MouseButton button) {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Released &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
@@ -69,6 +69,6 @@ namespace Apos.Input {
         /// <summary>
         /// The button that will be checked.
         /// </summary>
-        private MouseButton _needButton;
+        private MouseButton _button;
     }
 }
