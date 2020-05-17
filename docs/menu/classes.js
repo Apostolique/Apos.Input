@@ -1,1 +1,1 @@
-NDMenu.OnSectionLoaded("classes.js",[[1,"ConditionComposite"],[1,"ConditionGamePad"],[1,"ConditionKeyboard"],[1,"ConditionMouse"],[1,"ConditionSet"],[1,"ConditionTrigger"],[1,"ICondition"],[1,"InputHelper"],[1,"KeyCharacter"]]);
+NDMenu.OnSectionLoaded("classes.js",[[1,"AllCondition"],[1,"AnyCondition"],[1,"GamePadCondition"],[1,"ICondition"],[1,"InputHelper"],[2,"InputHelper","CSharpClass:Apos.Input.InputHelper.",[[1,"InputProcessor"]]],[1,"KeyboardCondition"],[1,"KeyCharacter"],[1,"MouseCondition"],[1,"Trigger"]]);

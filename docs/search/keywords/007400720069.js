@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("tri",["Class","Constructor"],[["Trigger",,[["Apos.Input",,,,0,"File:Trigger.cs:Apos.Input.Trigger","CSharpClass:Apos.Input.Trigger"],["Apos.Input.Trigger",,,,1,"File:Trigger.cs:Apos.Input.Trigger.Trigger","CSharpClass:Apos.Input.Trigger:Trigger"]]]]);

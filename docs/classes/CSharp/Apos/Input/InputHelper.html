@@ -18,18 +18,6 @@
  <div class="CTitle">Public Variables</div>
 </div>
 
-<a name="MouseButton"></a><a name="Topic35"></a><div class="CTopic TEnumeration LCSharp">
- <div class="CTitle">MouseButton</div>
- <div id="NDPrototype35" class="NDPrototype NoParameterForm"><span class="SHKeyword">public enum</span> MouseButton</div>
- <div class="CBody"><p>Available mouse buttons.</p></div>
-</div>
-
-<a name="GamePadButton"></a><a name="Topic36"></a><div class="CTopic TEnumeration LCSharp">
- <div class="CTitle">GamePadButton</div>
- <div id="NDPrototype36" class="NDPrototype NoParameterForm"><span class="SHKeyword">public enum</span> GamePadButton</div>
- <div class="CBody"><p>Available gamepad buttons.</p></div>
-</div>
-
 <a name="Game"></a><a name="Topic123"></a><div class="CTopic TProperty LCSharp">
  <div class="CTitle">Game</div>
  <div id="NDPrototype123" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Game Game { <span class="SHKeyword">get</span>; <span class="SHKeyword">set</span> }</div>
@@ -102,6 +90,12 @@
  <div class="CBody"><p>An array with all gamepads' info.</p></div>
 </div>
 
+<a name="GamePadDeadZone"></a><a name="Topic72"></a><div class="CTopic TProperty LCSharp">
+ <div class="CTitle">GamePadDeadZone</div>
+ <div id="NDPrototype72" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> GamePadDeadZone[] GamePadDeadZone { <span class="SHKeyword">get</span> }</div>
+ <div class="CBody"><p>An array with all gamepads' deadzone settings.</p></div>
+</div>
+
 <a name="NewTouchCollection"></a><a name="Topic135"></a><div class="CTopic TProperty LCSharp">
  <div class="CTitle">NewTouchCollection</div>
  <div id="NDPrototype135" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> TouchCollection NewTouchCollection { <span class="SHKeyword">get</span> }</div>
@@ -122,18 +116,24 @@
 
 <a name="MouseButtons"></a><a name="Topic37"></a><div class="CTopic TProperty LCSharp">
  <div class="CTitle">MouseButtons</div>
- <div id="NDPrototype37" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,35);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; MouseButtons { <span class="SHKeyword">get</span> }</div>
+ <div id="NDPrototype37" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#File:MouseButton.cs:Apos.Input.MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,2);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; MouseButtons { <span class="SHKeyword">get</span> }</div>
  <div class="CBody"><p>Maps a MouseButton to a function that can extract a specific ButtonState from a MouseState.</p></div>
 </div>
 
 <a name="GamePadButtons"></a><a name="Topic40"></a><div class="CTopic TProperty LCSharp">
  <div class="CTitle">GamePadButtons</div>
- <div id="NDPrototype40" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,36);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; GamePadButtons { <span class="SHKeyword">get</span> }</div>
+ <div id="NDPrototype40" class="NDPrototype NoParameterForm"><span class="SHKeyword">public static</span> Dictionary&lt;<a href="../../../../index.html#File:GamePadButton.cs:Apos.Input.GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,92);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; GamePadButtons { <span class="SHKeyword">get</span> }</div>
  <div class="CBody"><p>Maps a GamePadButton to a function that can extract a specific ButtonState from a GamePadState.</p></div>
 </div>
 
 <a name="Public_Functions"></a><a name="Topic74"></a><div class="CTopic TGroup LCSharp">
  <div class="CTitle">Public Functions</div>
+</div>
+
+<a name="Setup"></a><a name="Topic106"></a><div class="CTopic TFunction LCSharp">
+ <div class="CTitle">Setup</div>
+ <div id="NDPrototype106" class="NDPrototype WideForm CStyle"><table><tr><td class="PBeforeParameters"><span class="SHKeyword">public static</span> <span class="SHKeyword">void</span> Setup(</td><td class="PParametersParentCell"><table class="PParameters"><tr><td class="PType first">Game&nbsp;</td><td class="PName last">game</td></tr></table></td><td class="PAfterParameters">)</td></tr></table></div>
+ <div class="CBody"><p>Call Setup in the game's LoadContent.</p><div class="CHeading">Parameter</div><table class="CDefinitionList"><tr><td class="CDLEntry">game<div class="CDLParameterType">Game</div></td><td class="CDLDefinition"><p>Your game object.</p></td></tr></table></div>
 </div>
 
 <a name="UpdateSetup"></a><a name="Topic138"></a><div class="CTopic TFunction LCSharp">
@@ -152,26 +152,8 @@
  <div class="CTitle">Private Functions</div>
 </div>
 
-<a name="setup"></a><a name="Topic140"></a><div class="CTopic TFunction LCSharp">
- <div class="CTitle">setup</div>
- <div id="NDPrototype140" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> <span class="SHKeyword">void</span> setup()</div>
- <div class="CBody"><p>This is called automatically on the first update setup call.</p></div>
-</div>
-
-<a name="processTextInput"></a><a name="Topic53"></a><div class="CTopic TFunction LCSharp">
- <div class="CTitle">processTextInput</div>
- <div id="NDPrototype53" class="NDPrototype WideForm CStyle"><table><tr><td class="PBeforeParameters"><span class="SHKeyword">private static</span> <span class="SHKeyword">void</span> processTextInput(</td><td class="PParametersParentCell"><table class="PParameters"><tr><td class="PType first"><span class="SHKeyword">object</span>&nbsp;</td><td class="PName last">sender,</td></tr><tr><td class="PType first"><span class="SHKeyword">object</span>&nbsp;</td><td class="PName last">e</td></tr></table></td><td class="PAfterParameters">)</td></tr></table></div>
- <div class="CBody"><p>This function receives TextInput events from the game window.</p><div class="CHeading">Parameters</div><table class="CDefinitionList"><tr><td class="CDLEntry">sender<div class="CDLParameterType"><span class="SHKeyword">object</span></div></td><td class="CDLDefinition"><p>This gets ignored.</p></td></tr><tr><td class="CDLEntry">e<div class="CDLParameterType"><span class="SHKeyword">object</span></div></td><td class="CDLDefinition"><p>Contains a character and a key.</p></td></tr></table></div>
-</div>
-
 <a name="Private_Variables"></a><a name="Topic78"></a><div class="CTopic TGroup LCSharp">
  <div class="CTitle">Private Variables</div>
-</div>
-
-<a name="_initiated"></a><a name="Topic142"></a><div class="CTopic TVariable LCSharp">
- <div class="CTitle">_initiated</div>
- <div id="NDPrototype142" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> <span class="SHKeyword">bool</span> _initiated</div>
- <div class="CBody"><p>Whether setup has been called or not.</p></div>
 </div>
 
 <a name="_oldMouse"></a><a name="Topic143"></a><div class="CTopic TVariable LCSharp">
@@ -216,6 +198,12 @@
  <div class="CBody"><p>An array with all gamepads' info.</p></div>
 </div>
 
+<a name="_gamePadDeadZone"></a><a name="Topic110"></a><div class="CTopic TVariable LCSharp">
+ <div class="CTitle">_gamePadDeadZone</div>
+ <div id="NDPrototype110" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> GamePadDeadZone[] _gamePadDeadZone</div>
+ <div class="CBody"><p>An array with all gamepads' deadzone settings.</p></div>
+</div>
+
 <a name="_newTouchCollection"></a><a name="Topic150"></a><div class="CTopic TVariable LCSharp">
  <div class="CTitle">_newTouchCollection</div>
  <div id="NDPrototype150" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> TouchCollection _newTouchCollection</div>
@@ -236,12 +224,12 @@
 
 <a name="_mouseButtons"></a><a name="Topic102"></a><div class="CTopic TVariable LCSharp">
  <div class="CTitle">_mouseButtons</div>
- <div id="NDPrototype102" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,35);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; _mouseButtons</div>
+ <div id="NDPrototype102" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#File:MouseButton.cs:Apos.Input.MouseButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,2);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >MouseButton</a>, Func&lt;MouseState, ButtonState&gt;&gt; _mouseButtons</div>
 </div>
 
 <a name="_gamePadButtons"></a><a name="Topic103"></a><div class="CTopic TVariable LCSharp last">
  <div class="CTitle">_gamePadButtons</div>
- <div id="NDPrototype103" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#CSharpClass:Apos.Input.InputHelper:GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,36);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; _gamePadButtons</div>
+ <div id="NDPrototype103" class="NDPrototype NoParameterForm"><span class="SHKeyword">private static</span> Dictionary&lt;<a href="../../../../index.html#File:GamePadButton.cs:Apos.Input.GamePadButton" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,92);" onmouseout="NDContentPage.OnLinkMouseOut(event);" >GamePadButton</a>, Func&lt;GamePadState[], <span class="SHKeyword">int</span>, ButtonState&gt;&gt; _gamePadButtons</div>
 </div>
 
 </body></html>

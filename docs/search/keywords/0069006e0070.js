@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("inp",["Class"],[["InputHelper",,[["Apos.Input",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper","CSharpClass:Apos.Input.InputHelper"]]]]);
+NDSearch.OnPrefixDataLoaded("inp",["Class"],[["InputHelper",,[["Apos.Input",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper","CSharpClass:Apos.Input.InputHelper"]]],["InputProcessor",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.InputProcessor","CSharpClass:Apos.Input.InputHelper.InputProcessor"]]]]);
