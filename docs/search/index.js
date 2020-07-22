@@ -1,1 +1,0 @@
-NDSearch.OnPrefixIndexLoaded(["_bu","_co","_ga","_ke","_mo","_ne","_ol","_te","_to","_tr","all","any","cha","gam","hel","ico","inp","isa","ism","ist","key","mou","new","old","pre","pro","rel","set","tex","tou","tri","upd","win"]);

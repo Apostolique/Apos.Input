@@ -1,1 +1,0 @@
-NDSummary.OnToolTipsLoaded("File:GamePadButton.cs",{112:"<div class=\"NDToolTip TEnumeration LCSharp\"><div id=\"NDPrototype112\" class=\"NDPrototype NoParameterForm\"><span class=\"SHKeyword\">public enum</span> GamePadButton</div><div class=\"TTSummary\">Available gamepad buttons.</div></div>"});

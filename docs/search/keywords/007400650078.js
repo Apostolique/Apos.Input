@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("tex",["Property"],[["TextEvents",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.TextEvents","CSharpClass:Apos.Input.InputHelper:TextEvents"]]]]);

@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("cha",["Property"],[["Character",,[["Apos.Input.KeyCharacter",,,,0,"File:KeyCharacter.cs:Apos.Input.KeyCharacter.Character","CSharpClass:Apos.Input.KeyCharacter:Character"]]]]);

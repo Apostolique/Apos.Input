@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("_to",["Variable"],[["_touchPanelCapabilities",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper._touchPanelCapabilities","CSharpClass:Apos.Input.InputHelper:_touchPanelCapabilities"]]]]);

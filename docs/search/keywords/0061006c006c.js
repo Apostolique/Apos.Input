@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("all",["Class","Constructor"],[["AllCondition",,[["Apos.Input",,,,0,"File:AllCondition.cs:Apos.Input.AllCondition","CSharpClass:Apos.Input.AllCondition"],["Apos.Input.AllCondition",,,,1,"File:AllCondition.cs:Apos.Input.AllCondition.AllCondition","CSharpClass:Apos.Input.AllCondition:AllCondition"]]]]);

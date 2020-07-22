@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("isa",["Property"],[["IsActive",,[["Apos.Input.InputHelper",,,,0,"File:InputHelper.cs:Apos.Input.InputHelper.IsActive","CSharpClass:Apos.Input.InputHelper:IsActive"]]]]);

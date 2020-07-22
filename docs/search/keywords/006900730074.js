@@ -1,1 +1,0 @@
-NDSearch.OnPrefixDataLoaded("ist",["Function"],[["IsTriggered",,[["Apos.Input.Trigger",,,,0,"File:Trigger.cs:Apos.Input.Trigger.IsTriggered","CSharpClass:Apos.Input.Trigger:IsTriggered"]]]]);
