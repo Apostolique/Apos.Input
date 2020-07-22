@@ -61,3 +61,5 @@ monodroid*.msi
 *.dll
 *.VC.db
 *.VC.opendb
+
+dist
