@@ -9,7 +9,7 @@ Input library for MonoGame.
 
 ## Build
 
-[NuGet](https://www.nuget.org/packages/Apos.Input/) [![NuGet](https://img.shields.io/nuget/v/Apos.Input.svg)](https://www.nuget.org/packages/Apos.Input/) [![NuGet](https://img.shields.io/nuget/dt/Apos.Input.svg)](https://www.nuget.org/packages/Apos.Input/)
+[![NuGet](https://img.shields.io/nuget/v/Apos.Input.svg)](https://www.nuget.org/packages/Apos.Input/) [![NuGet](https://img.shields.io/nuget/dt/Apos.Input.svg)](https://www.nuget.org/packages/Apos.Input/)
 
 ## Features
 
