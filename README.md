@@ -5,7 +5,7 @@ Input library for MonoGame.
 
 ## Documentation
 
-* [API](https://apostolique.github.io/Apos.Input/)
+* [Read the documentation.](https://apostolique.github.io/Apos.Input/)
 
 ## Build
 
