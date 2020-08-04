@@ -1,5 +1,28 @@
 # Getting started
 
+## Install
+
+Install using the following dotnet command:
+```
+dotnet add package Apos.Input
+```
+
+## Static usage
+
+If you don't want to setup anything, you can use `KeyboardCondition`, `GamePadCondition`, and `MouseCondition` statically.
+
+```csharp
+if (KeyboardCondition.Pressed(Keys.Space) ||
+    GamePadCondition.Pressed(GamePadButton.A, 0) ||
+    MouseCondition.Pressed(MouseButton.LeftButton)) {
+
+    // Do the jump.
+
+}
+```
+
+## Instance usage
+
 Create a keyboard condition:
 ```csharp
 ICondition jump = new KeyboardCondition(Keys.Space);
@@ -24,3 +47,12 @@ ICondition jump =
         new MouseCondition(MouseButton.LeftButton)
     );
 ```
+
+To use `jump`, you can do:
+
+```csharp
+if (jump.Pressed()) {
+
+    // Do the jump.
+
+}
