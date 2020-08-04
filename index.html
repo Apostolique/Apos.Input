@@ -11,7 +11,7 @@
     InputHelper<span class="token punctuation">.</span><span class="token function">UpdateCleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></div><div class="code" lang="csharp"><pre class="syntax"><code><span class="line-numbers" aria-hidden="true" style="counter-reset: linenumber 0"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span class="token comment">//Create a condition to toggle fullscreen.</span>
-<span class="token comment">//It should work on either Alt keys with Enter.</span>
+<span class="token comment">//It should work on either Alt keys combined along with Enter.</span>
 <span class="token class-name"><span class="token keyword keyword-var">var</span></span> toggleFullScreen <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name constructor-invocation">AllCondition</span><span class="token punctuation">(</span>
     <span class="token keyword keyword-new">new</span> <span class="token class-name constructor-invocation">AnyCondition</span><span class="token punctuation">(</span>
         <span class="token keyword keyword-new">new</span> <span class="token class-name constructor-invocation">KeyboardCondition</span><span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>LeftAlt<span class="token punctuation">)</span><span class="token punctuation">,</span>
