@@ -109,27 +109,7 @@ namespace Apos.Input {
 
             _newTouchCollection = TouchPanel.GetState();
 
-            //This is boring but whatever, it only gets called once.
-            //MonoGame doesn't offer TextInput under some platforms.
-            EventInfo eInfo = Window.GetType().GetEvent("TextInput");
-            if (eInfo != null) {
-                Type handlerType = eInfo.EventHandlerType;
-                MethodInfo invokeMethod = handlerType.GetMethod("Invoke");
-                ParameterInfo[] parms = invokeMethod.GetParameters();
-                Type[] parmTypes = new Type[parms.Length];
-                for (int i = 0; i < parms.Length; i++) {
-                    parmTypes[i] = parms[i].ParameterType;
-                }
-
-                Type processorType = typeof(InputProcessor<>);
-                Type genericProcessorType = processorType.MakeGenericType(parmTypes[1]);
-
-                object inputProcessor = genericProcessorType.GetConstructor(Type.EmptyTypes).Invoke(null);
-
-                MethodInfo eventHandler = inputProcessor.GetType().GetMethod("processTextInput");
-                Delegate d = Delegate.CreateDelegate(handlerType, eventHandler);
-                eInfo.AddEventHandler(Window, d);
-            }
+            Window.TextInput += ProcessTextInput;
         }
 
         /// <summary>
@@ -160,32 +140,8 @@ namespace Apos.Input {
 
         // Group: Private Functions
 
-        /// <summary>
-        /// This class is designed to help with receiving text input events through reflection magic.
-        /// </summary>
-        private class InputProcessor<T> {
-            /// <summary>
-            /// This function receives TextInput events from the game window.
-            /// </summary>
-            /// <param name="sender">This gets ignored.</param>
-            /// <param name="e">Contains a character and a key.</param>
-            public static void processTextInput(object sender, T e) {
-                Type t = e.GetType();
-                // For MonoGame versions below 3.8.
-                PropertyInfo pk = t.GetProperty("Key");
-                PropertyInfo pc = t.GetProperty("Character");
-
-                if (pk != null && pc != null) {
-                    _textEvents.Add(new KeyCharacter((Keys)pk.GetValue(e), (char)pc.GetValue(e)));
-                } else {
-                    // For MonoGame versions 3.8 and above.
-                    FieldInfo fk = t.GetField("Key");
-                    FieldInfo fc = t.GetField("Character");
-                    if (fk != null && fc != null) {
-                        _textEvents.Add(new KeyCharacter((Keys)fk.GetValue(e), (char)fc.GetValue(e)));
-                    }
-                }
-            }
+        private static void ProcessTextInput(object sender, TextInputEventArgs e) {
+            _textEvents.Add(new KeyCharacter(e.Key, e.Character));
         }
 
         // Group: Private Variables
