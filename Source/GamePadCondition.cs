@@ -7,8 +7,6 @@ namespace Apos.Input {
     /// </summary>
     public class GamePadCondition : ICondition {
 
-        // Group: Constructors
-
         /// <param name="button">The button to operate on.</param>
         /// <param name="gamePadIndex">The index of the gamepad to operate on.</param>
         public GamePadCondition(GamePadButton button, int gamePadIndex) {
@@ -16,26 +14,24 @@ namespace Apos.Input {
             _gamePadIndex = gamePadIndex;
         }
 
-        // Group: Public Functions
-
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
-        public bool Pressed() {
+        public bool Pressed(bool canConsume = true) {
             return Pressed(_button, _gamePadIndex) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button is now pressed.</returns>
-        public bool Held() {
+        public bool Held(bool canConsume = true) {
             return Held(_button, _gamePadIndex) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
-        public bool HeldOnly() {
+        public bool HeldOnly(bool canConsume = true) {
             return HeldOnly(_button, _gamePadIndex) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
-        public bool Released() {
+        public bool Released(bool canConsume = true) {
             return Released(_button, _gamePadIndex) && InputHelper.IsActive;
         }
-
-        // Group: Static Functions
+        /// <summary>Does nothing since this condition isn't tracked.</summary>
+        public void Consume() { }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public static bool Pressed(GamePadButton button, int gamePadIndex) {
@@ -56,8 +52,6 @@ namespace Apos.Input {
             return InputHelper.GamePadButtons[button](InputHelper.NewGamePad, gamePadIndex) == ButtonState.Released &&
                    InputHelper.GamePadButtons[button](InputHelper.OldGamePad, gamePadIndex) == ButtonState.Pressed;
         }
-
-        // Group: Private Variables
 
         /// <summary>
         /// The button that will be checked.

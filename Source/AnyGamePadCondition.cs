@@ -7,33 +7,29 @@ namespace Apos.Input {
     /// </summary>
     public class AnyGamePadCondition : ICondition {
 
-        // Group: Constructors
-
         /// <param name="button">The button to operate on.</param>
         public AnyGamePadCondition(GamePadButton button) {
             _button = button;
         }
 
-        // Group: Public Functions
-
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
-        public bool Pressed() {
+        public bool Pressed(bool canConsume = true) {
             return Pressed(_button) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button is now pressed.</returns>
-        public bool Held() {
+        public bool Held(bool canConsume = true) {
             return Held(_button) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
-        public bool HeldOnly() {
+        public bool HeldOnly(bool canConsume = true) {
             return HeldOnly(_button) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
-        public bool Released() {
+        public bool Released(bool canConsume = true) {
             return Released(_button) && InputHelper.IsActive;
         }
-
-        // Group: Static Functions
+        /// <summary>Does nothing since this condition isn't tracked.</summary>
+        public void Consume() { }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public static bool Pressed(GamePadButton button) {
@@ -74,8 +70,6 @@ namespace Apos.Input {
             }
             return false;
         }
-
-        // Group: Private Variables
 
         /// <summary>
         /// The button that will be checked.

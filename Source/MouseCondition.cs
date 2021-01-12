@@ -3,37 +3,34 @@
 namespace Apos.Input {
     /// <summary>
     /// Checks various conditions on a specific mouse button.
-    /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
+    /// Non static methods implicitly make sure that the game is active.
+    /// Pressed also makes sure the mouse is inside the window. Otherwise returns false.
     /// </summary>
     public class MouseCondition : ICondition {
-
-        // Group: Constructors
 
         /// <param name="button">The button to operate on.</param>
         public MouseCondition(MouseButton button) {
             _button = button;
         }
 
-        // Group: Public Functions
-
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
-        public bool Pressed() {
+        public bool Pressed(bool canConsume = true) {
             return Pressed(_button) && IsMouseValid(InputHelper.IsActive);
         }
         /// <returns>Returns true when the button is now pressed.</returns>
-        public bool Held() {
-            return Held(_button) && IsMouseValid(InputHelper.IsActive);
+        public bool Held(bool canConsume = true) {
+            return Held(_button) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
-        public bool HeldOnly() {
-            return HeldOnly(_button) && IsMouseValid(InputHelper.IsActive);
+        public bool HeldOnly(bool canConsume = true) {
+            return HeldOnly(_button) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
-        public bool Released() {
-            return Released(_button) && IsMouseValid(InputHelper.IsActive);
+        public bool Released(bool canConsume = true) {
+            return Released(_button) && InputHelper.IsActive;
         }
-
-        // Group: Static Functions
+        /// <summary>Does nothing since this condition isn't tracked.</summary>
+        public void Consume() { }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public static bool Pressed(MouseButton button) {
@@ -63,8 +60,6 @@ namespace Apos.Input {
             }
             return false;
         }
-
-        // Group: Private Variables
 
         /// <summary>
         /// The button that will be checked.

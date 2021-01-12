@@ -11,8 +11,6 @@ namespace Apos.Input {
     /// </summary>
     public static class InputHelper {
 
-        // Group: Public Variables
-
         /// <value>Pass your game class here.</value>
         public static Game Game {
             get;
@@ -77,7 +75,7 @@ namespace Apos.Input {
         /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
-        public static List<KeyCharacter> TextEvents => _textEvents;
+        public static List<TextInputEventArgs> TextEvents => _textEvents;
         /// <summary>
         /// Maps a MouseButton to a function that can extract a specific ButtonState from a MouseState.
         /// </summary>
@@ -86,8 +84,10 @@ namespace Apos.Input {
         /// Maps a GamePadButton to a function that can extract a specific ButtonState from a GamePadState.
         /// </summary>
         public static Dictionary<GamePadButton, Func<GamePadState[], int, ButtonState>> GamePadButtons => _gamePadButtons;
-
-        // Group: Public Functions
+        /// <summary>
+        /// Used by conditions to know if they've been consumed this frame.
+        /// </summary>
+        public static uint CurrentFrame => _currentFrame;
 
         /// <summary>
         /// Call Setup in the game's LoadContent.
@@ -129,6 +129,8 @@ namespace Apos.Input {
 
             _newTouchCollection = TouchPanel.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
+
+            _currentFrame++;
         }
         /// <summary>
         /// Call this at the end of your update loop.
@@ -137,13 +139,9 @@ namespace Apos.Input {
             _textEvents.Clear();
         }
 
-        // Group: Private Functions
-
         private static void ProcessTextInput(object sender, TextInputEventArgs e) {
-            _textEvents.Add(new KeyCharacter(e.Key, e.Character));
+            _textEvents.Add(e);
         }
-
-        // Group: Private Variables
 
         /// <summary>
         /// The mouse's previous state.
@@ -188,7 +186,7 @@ namespace Apos.Input {
         /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
-        private static List<KeyCharacter> _textEvents = new List<KeyCharacter>();
+        private static List<TextInputEventArgs> _textEvents = new List<TextInputEventArgs>();
         private static Dictionary<MouseButton, Func<MouseState, ButtonState>> _mouseButtons = new Dictionary<MouseButton, Func<MouseState, ButtonState>> {
             {MouseButton.LeftButton, s => s.LeftButton},
             {MouseButton.MiddleButton, s => s.MiddleButton},
@@ -213,5 +211,6 @@ namespace Apos.Input {
             {GamePadButton.Right, (s, i) => s[i].DPad.Right},
             {GamePadButton.Up, (s, i) => s[i].DPad.Up},
         };
+        private static uint _currentFrame = 0;
     }
 }

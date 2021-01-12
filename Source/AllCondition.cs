@@ -5,8 +5,6 @@ namespace Apos.Input {
     /// <see cref="AnyCondition"/>
     public class AllCondition : ICondition {
 
-        // Group: Constructors
-
         /// <summary>
         /// AllCondition with initial needed conditions or empty.
         /// </summary>
@@ -14,12 +12,10 @@ namespace Apos.Input {
             _conditions = conditions;
         }
 
-        // Group: Public Functions
-
         /// <returns>
         /// Returns true when all the needed conditions are held and at least one triggers as pressed.
         /// </returns>
-        public bool Pressed() {
+        public bool Pressed(bool canConsume = true) {
             bool pressed = false;
             bool held = true;
 
@@ -36,12 +32,15 @@ namespace Apos.Input {
                 }
             }
 
+            if (canConsume && pressed && held) {
+                Consume();
+            }
             return pressed && held;
         }
         /// <returns>
         /// Returns true when all the needed conditions are held.
         /// </returns>
-        public bool Held() {
+        public bool Held(bool canConsume = true) {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
@@ -51,12 +50,15 @@ namespace Apos.Input {
                 }
             }
 
+            if (canConsume && held) {
+                Consume();
+            }
             return held;
         }
         /// <returns>
         /// Returns true when all the needed conditions were held and are now held.
         /// </returns>
-        public bool HeldOnly() {
+        public bool HeldOnly(bool canConsume = true) {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
@@ -66,12 +68,15 @@ namespace Apos.Input {
                 }
             }
 
+            if (canConsume && held) {
+                Consume();
+            }
             return held;
         }
         /// <returns>
         /// Returns true when at least one needed condition is released and the other needed conditions are held.
         /// </returns>
-        public bool Released() {
+        public bool Released(bool canConsume = true) {
             bool released = false;
             bool held = true;
 
@@ -88,10 +93,17 @@ namespace Apos.Input {
                 }
             }
 
+            if (canConsume && released && held) {
+                Consume();
+            }
             return released && held;
         }
-
-        // Group: Private Variables
+        /// <summary>Mark all conditions as used.</summary>
+        public void Consume() {
+            foreach (ICondition c in _conditions) {
+                c.Consume();
+            }
+        }
 
         /// <summary>
         /// An array of ICondition.

@@ -5,8 +5,6 @@
     /// <see cref="AllCondition"/>
     public class AnyCondition : ICondition {
 
-        // Group: Constructors
-
         /// <summary>
         /// AnyCondition with initial ICondition array or empty.
         /// </summary>
@@ -15,12 +13,10 @@
             _conditions = conditions;
         }
 
-        // Group: Public Functions
-
         /// <returns>
         /// Returns true when at least one condition triggers as pressed.
         /// </returns>
-        public bool Pressed() {
+        public bool Pressed(bool canConsume = true) {
             bool pressed = false;
             foreach (ICondition cs in _conditions) {
                 pressed = cs.Pressed();
@@ -28,12 +24,16 @@
                     break;
                 }
             }
+
+            if (canConsume && pressed) {
+                Consume();
+            }
             return pressed;
         }
         /// <returns>
         /// Returns true when at least one condition triggers as held.
         /// </returns>
-        public bool Held() {
+        public bool Held(bool canConsume = true) {
             bool held = false;
             foreach (ICondition cs in _conditions) {
                 held = cs.Held();
@@ -41,12 +41,16 @@
                     break;
                 }
             }
+
+            if (canConsume && held) {
+                Consume();
+            }
             return held;
         }
         /// <returns>
-        /// Returns true when at least one condition triggers as held only.
+        /// Returns true when all the needed conditions were held and are now held.
         /// </returns>
-        public bool HeldOnly() {
+        public bool HeldOnly(bool canConsume = true) {
             bool heldOnly = false;
             foreach (ICondition cs in _conditions) {
                 heldOnly = cs.HeldOnly();
@@ -54,12 +58,16 @@
                     break;
                 }
             }
+
+            if (canConsume && heldOnly) {
+                Consume();
+            }
             return heldOnly;
         }
         /// <returns>
         /// Returns true when at least one condition triggers as released.
         /// </returns>
-        public bool Released() {
+        public bool Released(bool canConsume = true) {
             bool released = false;
             foreach (ICondition cs in _conditions) {
                 released = cs.Released();
@@ -67,10 +75,18 @@
                     break;
                 }
             }
+
+            if (canConsume && released) {
+                Consume();
+            }
             return released;
         }
-
-        // Group: Private Variables
+        /// <summary>Mark all conditions as used.</summary>
+        public void Consume() {
+            foreach (ICondition c in _conditions) {
+                c.Consume();
+            }
+        }
 
         /// <summary>
         /// An array of ICondition.
