@@ -1,11 +1,14 @@
 # Apos.Input
-Input library for MonoGame.
+
+Polling input library for MonoGame.
 
 [![Discord](https://img.shields.io/discord/355231098122272778.svg)](https://discord.gg/N9t26Uv)
 
 ## Documentation
 
-* [Read the documentation.](https://apostolique.github.io/Apos.Input/)
+* [Getting started](https://apostolique.github.io/Apos.Input/getting-started/)
+* [Design choices](https://apostolique.github.io/Apos.Input/design-choices/)
+* [API](https://apostolique.github.io/Apos.Input/api/)
 
 ## Build
 
