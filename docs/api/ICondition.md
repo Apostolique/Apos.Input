@@ -1,10 +1,12 @@
 # ICondition
 
-An ICondition is an abstraction over button-based input. A button can pressed or not pressed which maps to `on` or `off` respectively. By comparing it's previous and current states, we get the following cases.
+An [ICondition](https://github.com/Apostolique/Apos.Input/blob/master/Source/ICondition.cs) is an abstraction over button-based input. A button can pressed or not pressed which maps to `on` or `off` respectively. By comparing it's previous and current states, we get the following cases.
 
 In the following functions, when `canConsume` is `true`, it means that the `Consume()` function gets called implicitly if the condition is part of the tracking system.
 
 ---
+
+## Pressed
 
 ```csharp
 bool Pressed(bool canConsume = true);
@@ -13,12 +15,16 @@ Previous state is `off`, current state is `on`. Triggers only on the first frame
 
 ---
 
+## Held
+
 ```csharp
 bool Held(bool canConsume = true);
 ```
 Previous state ignored, current state is `on`. Triggers every frame for as long as the current state stays `on`.
 
 ---
+
+## HeldOnly
 
 ```csharp
 bool HeldOnly(bool canConsume = true);
@@ -27,12 +33,16 @@ Previous state is `on`, current state is `on`. Since `HeldOnly` doesn't get trig
 
 ---
 
+## Released
+
 ```csharp
 bool Released(bool canConsume = true);
 ```
 Previous state is `on`, current state is `off`. Triggers only on the first frame that the current state becomes `off` after it was `on`.
 
 ---
+
+## Consume
 
 ```csharp
 void Consume();

@@ -6,7 +6,7 @@ This library's goal is to enable a [polling-based](https://en.wikipedia.org/wiki
 
 ## Abstraction
 
-For an input button, the state can either be `on` or `off`. It's useful to know when the state becomes `on` and when the state becomes `off`. This library defines the moment a state becomes on as `Pressed` and the moment the state becomes off as `Released`. It also defines the exclusive state in between those as `HeldOnly`. When either `Pressed` or `HeldOnly` are true, this is defined as `Held`. These are included in the [ICondition](api/ICondition.md) interface.
+For an input button, the state can either be `on` or `off`. It's useful to know when the state becomes `on` and when the state becomes `off`. This library defines the moment a state becomes `on` as `Pressed` and the moment the state becomes `off` as `Released`. It also defines the exclusive state in between those as `HeldOnly`. When either `Pressed` or `HeldOnly` are true, this is defined as `Held`. These are included in the [ICondition](api/ICondition.md) interface.
 
 ## Tracking
 
