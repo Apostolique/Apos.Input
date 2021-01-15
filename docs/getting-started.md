@@ -15,7 +15,6 @@ using Apos.Input;
 using Track = Apos.Input.Track;
 ```
 
-
 In your game's `Initialize()`, pass the game class to `InputHelper.Setup()`:
 
 ```csharp
@@ -37,6 +36,22 @@ protected override void Update(GameTime gametime) {
     InputHelper.UpdateCleanup();
 }
 ```
+
+## Input types
+
+This library provides an API over various input types.
+
+| Type | Description |
+| ---- | ----------- |
+| [ICondition](api/ICondition.md) | Base interface for conditions. Provides `Pressed()`, `Held()`, `HeldOnly()`, `Released()`, `Consume()`. |
+| KeyboardCondition | Polls keyboard button presses. |
+| MouseCondition | Polls mouse button clicks. |
+| GamePadCondition | Polls controller button clicks. |
+| AnyCondition | Combines other conditions. This is equivalent to the `or` Boolean operator. Triggers when any condition is triggered. |
+| AllCondition | Combines other conditions. This is equivalent to the `and` Boolean operator. Triggers when all conditions are triggered. |
+| Track.KeyboardCondition | Same as KeyboardCondition, but also tracks the given key preventing it from triggering twice on the same frame in other tracked conditions. |
+| Track.MouseCondition | Same as MouseCondition, but also tracks the given mouse button preventing it from triggering twice on the same frame in other tracked conditions. |
+| Track.GamePadCondition | Same as GamePadCondition, but also tracks the given controller button preventing it from triggering twice on the same frame in other tracked conditions. |
 
 ## Static usage
 
@@ -144,3 +159,8 @@ ICondition run =
     );
 ICondition walk = new Track.KeyboardCondition(Keys.Right);
 ```
+
+## Read more
+
+1. Check the [Design choices](design-choices.md) to understand the thinking process behind this library.
+2. Check the [API](api/README.md) for more info on each condition types.
