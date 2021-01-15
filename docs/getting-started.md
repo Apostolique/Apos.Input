@@ -49,9 +49,9 @@ This library provides an API over various input types.
 | GamePadCondition | Polls controller button clicks. |
 | AnyCondition | Combines other conditions. This is equivalent to the `or` Boolean operator. Triggers when any condition is triggered. |
 | AllCondition | Combines other conditions. This is equivalent to the `and` Boolean operator. Triggers when all conditions are triggered. |
-| Track.KeyboardCondition | Same as KeyboardCondition, but also tracks the given key preventing it from triggering twice on the same frame in other tracked conditions. |
-| Track.MouseCondition | Same as MouseCondition, but also tracks the given mouse button preventing it from triggering twice on the same frame in other tracked conditions. |
-| Track.GamePadCondition | Same as GamePadCondition, but also tracks the given controller button preventing it from triggering twice on the same frame in other tracked conditions. |
+| Track.KeyboardCondition | Same as KeyboardCondition, but also tracks the given key preventing it from triggering again on the same frame if it's already been triggered once. |
+| Track.MouseCondition | Same as MouseCondition, but also tracks the given mouse button preventing it from triggering again on the same frame if it's already been triggered once. |
+| Track.GamePadCondition | Same as GamePadCondition, but also tracks the given controller button preventing it from triggering again on the same frame if it's already been triggered once. |
 
 ## Static usage
 
