@@ -19,7 +19,7 @@
         public bool Pressed(bool canConsume = true) {
             bool pressed = false;
             foreach (ICondition cs in _conditions) {
-                pressed = cs.Pressed();
+                pressed = cs.Pressed(false);
                 if (pressed) {
                     break;
                 }
@@ -36,7 +36,7 @@
         public bool Held(bool canConsume = true) {
             bool held = false;
             foreach (ICondition cs in _conditions) {
-                held = cs.Held();
+                held = cs.Held(false);
                 if (held) {
                     break;
                 }
@@ -53,7 +53,7 @@
         public bool HeldOnly(bool canConsume = true) {
             bool heldOnly = false;
             foreach (ICondition cs in _conditions) {
-                heldOnly = cs.HeldOnly();
+                heldOnly = cs.HeldOnly(false);
                 if (heldOnly) {
                     break;
                 }
@@ -70,7 +70,7 @@
         public bool Released(bool canConsume = true) {
             bool released = false;
             foreach (ICondition cs in _conditions) {
-                released = cs.Released();
+                released = cs.Released(false);
                 if (released) {
                     break;
                 }

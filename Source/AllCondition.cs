@@ -20,13 +20,13 @@ namespace Apos.Input {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
-                pressed = pressed || c.Pressed();
+                pressed = pressed || c.Pressed(false);
                 if (pressed) {
                     break;
                 }
             }
             foreach (ICondition c in _conditions) {
-                held = held && c.Held();
+                held = held && c.Held(false);
                 if (!held) {
                     break;
                 }
@@ -44,7 +44,7 @@ namespace Apos.Input {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
-                held = held && c.Held();
+                held = held && c.Held(false);
                 if (!held) {
                     break;
                 }
@@ -62,7 +62,7 @@ namespace Apos.Input {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
-                held = held && c.HeldOnly();
+                held = held && c.HeldOnly(false);
                 if (!held) {
                     break;
                 }
@@ -81,13 +81,13 @@ namespace Apos.Input {
             bool held = true;
 
             foreach (ICondition c in _conditions) {
-                released = released || c.Released();
+                released = released || c.Released(false);
                 if (released) {
                     break;
                 }
             }
             foreach (ICondition c in _conditions) {
-                held = held && (c.Held() || c.Released());
+                held = held && (c.Held(false) || c.Released(false));
                 if (!held) {
                     break;
                 }
