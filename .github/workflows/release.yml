@@ -26,4 +26,4 @@ jobs:
     - name: Pack with dotnet
       run: dotnet pack {{ env.SOURCE }} -c Release --include-source --include-symbols -o ./artifacts -p:PackageVersion=${{ env.TAGVERSION }}
     - name: Push with dotnet
-      run: dotnet nuget push ./artifacts/*.nupkg -k ${{ secrets.NuGetAPIKey }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push ./artifacts/*.nupkg -k ${{ secrets.NUGETAPIKEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
