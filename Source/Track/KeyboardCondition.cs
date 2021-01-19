@@ -11,74 +11,76 @@ namespace Apos.Input.Track {
         /// <param name="key">The key to operate on.</param>
         public KeyboardCondition(Keys key) {
             _key = key;
-            _condition = new Input.KeyboardCondition(_key);
-
-            if (!Tracker.ContainsKey(_key)) {
-                Tracker.Add(_key, 0);
-            }
         }
 
         /// <returns>Returns true when the key was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            if (isUnique) {
-                bool pressed = _condition.Pressed();
+            return Pressed(_key, canConsume) && InputHelper.IsActive;
+        }
+        /// <returns>Returns true when the key is now pressed.</returns>
+        public bool Held(bool canConsume = true) {
+            return Held(_key, canConsume) && InputHelper.IsActive;
+        }
+        /// <returns>Returns true when the key was pressed and is now pressed.</returns>
+        public bool HeldOnly(bool canConsume = true) {
+            return HeldOnly(_key, canConsume) && InputHelper.IsActive;
+        }
+        /// <returns>Returns true when the key was pressed and is now not pressed.</returns>
+        public bool Released(bool canConsume = true) {
+            return Released(_key, canConsume) && InputHelper.IsActive;
+        }
+        /// <summary>Mark the key as used.</summary>
+        public void Consume() {
+            Consume(_key);
+        }
 
-                if (canConsume && pressed) {
-                    Consume();
-                }
-                return pressed;
+        /// <returns>Returns true when the key was released and is now pressed.</returns>
+        public static bool Pressed(Keys key, bool canConsume = true) {
+            if (IsUnique(key) && Input.KeyboardCondition.Pressed(key)) {
+                if (canConsume)
+                    Consume(key);
+                return true;
             }
             return false;
         }
         /// <returns>Returns true when the key is now pressed.</returns>
-        public bool Held(bool canConsume = true) {
-            if (isUnique) {
-                bool held = _condition.Held();
-
-                if (canConsume && held) {
-                    Consume();
-                }
-                return held;
+        public static bool Held(Keys key, bool canConsume = true) {
+            if (IsUnique(key) && Input.KeyboardCondition.Held(key)) {
+                if (canConsume)
+                    Consume(key);
+                return true;
             }
             return false;
         }
         /// <returns>Returns true when the key was pressed and is now pressed.</returns>
-        public bool HeldOnly(bool canConsume = true) {
-            if (isUnique) {
-                bool held = _condition.HeldOnly();
-
-                if (canConsume && held) {
-                    Consume();
-                }
-                return held;
+        public static bool HeldOnly(Keys key, bool canConsume = true) {
+            if (IsUnique(key) && Input.KeyboardCondition.HeldOnly(key)) {
+                if (canConsume)
+                    Consume(key);
+                return true;
             }
             return false;
         }
-        /// <returns>Returns true when the key was pressed and is now not pressed.</returns>
-        public bool Released(bool canConsume = true) {
-            if (isUnique) {
-                bool release = _condition.Released();
-
-                if (canConsume && release) {
-                    Consume();
-                }
-                return release;
+        /// <returns>Returns true when the key was pressed and is now released.</returns>
+        public static bool Released(Keys key, bool canConsume = true) {
+            if (IsUnique(key) && Input.KeyboardCondition.Released(key)) {
+                if (canConsume)
+                    Consume(key);
+                return true;
             }
             return false;
         }
-        /// <summary>Mark the condition as used.</summary>
-        public void Consume() {
-            Tracker[_key] = InputHelper.CurrentFrame;
+        /// <summary>Mark the key as used for this frame.</summary>
+        public static void Consume(Keys key) {
+            Tracker[key] = InputHelper.CurrentFrame;
         }
 
-        private bool isUnique => Tracker[_key] != InputHelper.CurrentFrame;
+        /// <summary>Checks if the given key is unique for this frame.</summary>
+        public static bool IsUnique(Keys key) => !Tracker.ContainsKey(key) || Tracker[key] != InputHelper.CurrentFrame;
 
         private Keys _key;
-        private Input.KeyboardCondition _condition;
 
-        /// <summary>
-        /// Tracks keys being used each frames.
-        /// </summary>
+        /// <summary>Tracks keys being used each frames.</summary>
         protected static Dictionary<Keys, uint> Tracker = new Dictionary<Keys, uint>();
     }
 }

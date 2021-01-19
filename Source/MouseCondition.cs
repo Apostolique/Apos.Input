@@ -15,7 +15,7 @@ namespace Apos.Input {
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_button) && IsMouseValid(InputHelper.IsActive);
+            return Pressed(_button) && IsMouseValid;
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
@@ -51,15 +51,10 @@ namespace Apos.Input {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Released &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
-        /// <returns>Returns true when the mouse is within the game window.</returns>
-        public static bool IsMouseValid(bool IsActive) {
-            if (IsActive &&
-                InputHelper.NewMouse.X >= 0 && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
-                InputHelper.NewMouse.Y >= 0 && InputHelper.NewMouse.Y <= InputHelper.WindowHeight) {
-                return true;
-            }
-            return false;
-        }
+        /// <returns>Returns true when the mouse is within the game window and active.</returns>
+        public static bool IsMouseValid => InputHelper.IsActive &&
+                0 <= InputHelper.NewMouse.X && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
+                0 <= InputHelper.NewMouse.Y && InputHelper.NewMouse.Y <= InputHelper.WindowHeight;
 
         /// <summary>
         /// The button that will be checked.

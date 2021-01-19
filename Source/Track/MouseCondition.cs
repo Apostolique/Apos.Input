@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input.Track {
     /// <summary>
@@ -12,74 +11,75 @@ namespace Apos.Input.Track {
         /// <param name="button">The button to operate on.</param>
         public MouseCondition(MouseButton button) {
             _button = button;
-            _condition = new Input.MouseCondition(_button);
-
-            if (!Tracker.ContainsKey(_button)) {
-                Tracker.Add(_button, 0);
-            }
         }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            if (isUnique) {
-                bool pressed = _condition.Pressed();
-
-                if (canConsume && pressed) {
-                    Consume();
-                }
-                return pressed;
-            }
-            return false;
+            return Pressed(_button, canConsume) && Input.MouseCondition.IsMouseValid;
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            if (isUnique) {
-                bool held = _condition.Held();
-
-                if (canConsume && held) {
-                    Consume();
-                }
-                return held;
-            }
-            return false;
+            return Held(_button, canConsume) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            if (isUnique) {
-                bool held = _condition.HeldOnly();
-
-                if (canConsume && held) {
-                    Consume();
-                }
-                return held;
-            }
-            return false;
+            return HeldOnly(_button, canConsume) && InputHelper.IsActive;
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            if (isUnique) {
-                bool released = _condition.Released();
-
-                if (canConsume && released) {
-                    Consume();
-                }
-                return released;
-            }
-            return false;
+            return Released(_button, canConsume) && InputHelper.IsActive;
         }
         /// <summary>Mark the condition as used.</summary>
         public void Consume() {
-            Tracker[_button] = InputHelper.CurrentFrame;
+            Consume(_button);
         }
 
-        private bool isUnique => Tracker[_button] != InputHelper.CurrentFrame;
+        /// <returns>Returns true when the mouse button was released and is now pressed.</returns>
+        public static bool Pressed(MouseButton button, bool canConsume = true) {
+            if (IsUnique(button) && Input.MouseCondition.Pressed(button)) {
+                if (canConsume)
+                    Consume(button);
+                return true;
+            }
+            return false;
+        }
+        /// <returns>Returns true when the mouse button is now pressed.</returns>
+        public static bool Held(MouseButton button, bool canConsume = true) {
+            if (IsUnique(button) && Input.MouseCondition.Held(button)) {
+                if (canConsume)
+                    Consume(button);
+                return true;
+            }
+            return false;
+        }
+        /// <returns>Returns true when the mouse button was pressed and is now pressed.</returns>
+        public static bool HeldOnly(MouseButton button, bool canConsume = true) {
+            if (IsUnique(button) && Input.MouseCondition.HeldOnly(button)) {
+                if (canConsume)
+                    Consume(button);
+                return true;
+            }
+            return false;
+        }
+        /// <returns>Returns true when the mouse button was pressed and is now released.</returns>
+        public static bool Released(MouseButton button, bool canConsume = true) {
+            if (IsUnique(button) && Input.MouseCondition.Released(button)) {
+                if (canConsume)
+                    Consume(button);
+                return true;
+            }
+            return false;
+        }
+        /// <summary>Mark the mouse button as used for this frame.</summary>
+        public static void Consume(MouseButton button) {
+            Tracker[button] = InputHelper.CurrentFrame;
+        }
+        /// <summary>Checks if the given mouse button is unique for this frame.</summary>
+        public static bool IsUnique(MouseButton button) => !Tracker.ContainsKey(button) || Tracker[button] != InputHelper.CurrentFrame;
 
         private MouseButton _button;
-        private Input.MouseCondition _condition;
 
-        /// <summary>
-        /// Tracks buttons being used each frames.
-        /// </summary>
+        /// <summary>Tracks buttons being used each frames.</summary>
         protected static Dictionary<MouseButton, uint> Tracker = new Dictionary<MouseButton, uint>();
     }
 }
