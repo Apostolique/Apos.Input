@@ -1,8 +1,12 @@
 # ICondition
 
-An [ICondition](https://github.com/Apostolique/Apos.Input/blob/master/Source/ICondition.cs) is an abstraction over button-based input. A button can pressed or not pressed which maps to `on` or `off` respectively. By comparing it's previous and current states, we get the following cases.
+An ICondition is an abstraction over button-based input. A button can pressed or not pressed which maps to `on` or `off` respectively. By comparing it's previous and current states, we get the following cases.
 
 In the following functions, when `canConsume` is `true`, it means that the `Consume()` function gets called implicitly if the condition is part of the tracking system.
+
+## Source code
+
+Read the [source code](https://github.com/Apostolique/Apos.Input/blob/master/Source/ICondition.cs).
 
 ---
 
