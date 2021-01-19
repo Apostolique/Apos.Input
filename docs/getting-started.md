@@ -129,7 +129,7 @@ ICondition walk = new KeyboardCondition(Keys.Right);
 
 if (walk.Held()) {
 
-    // Walk while the buttons are held.
+    // Walk while the right button is held.
 
 }
 ```
@@ -144,7 +144,7 @@ if (run.Held()) {
 }
 if (walk.Held()) {
 
-    // Walk while the buttons are held.
+    // Walk while the right button is held.
 
 }
 ```
