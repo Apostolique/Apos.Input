@@ -1,6 +1,6 @@
 # API
 
-* InputHelper
+* [InputHelper](InputHelper.md)
 * [ICondition](ICondition.md)
 * AllCondition
 * AnyCondition
