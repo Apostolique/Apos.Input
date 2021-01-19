@@ -43,19 +43,20 @@ protected override void Update(GameTime gametime) {
 ```
 
 ```csharp
-//Create a condition to toggle fullscreen.
-//It should work on either Alt keys combined along with Enter.
-var toggleFullScreen = new AllCondition(
+//Create a condition to jump.
+//It should work on space, the first gamepad's A button, or the mouse's left button.
+ICondition jump =
     new AnyCondition(
-        new KeyboardCondition(Keys.LeftAlt),
-        new KeyboardCondition(Keys.RightAlt)
-    ),
-    new KeyboardCondition(Keys.Enter)
-);
+        new KeyboardCondition(Keys.Space),
+        new GamePadCondition(GamePadButton.A, 0),
+        new MouseCondition(MouseButton.LeftButton)
+    );
+```
 
-//To check if toggleFullscreen is triggered:
-if (toggleFullscreen.Pressed()) {
-    //Do the fullscreen change.
+```csharp
+//To check if the jump is triggered:
+if (jump.Pressed()) {
+    //Do the jump change.
 }
 ```
 
