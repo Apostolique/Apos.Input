@@ -16,7 +16,10 @@ Polling input library for MonoGame.
 
 ## Features
 
-* Mouse, Keyboard, GamePad buttons
+* Manages the input states for you every frame
+* Mouse, Keyboard, and GamePad buttons abstractions
+* Tracking mode so that you don't accidentally consume the same input multiple times
+* Static or instanced usage
 
 ## Usage samples
 
