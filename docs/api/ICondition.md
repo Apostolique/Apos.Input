@@ -8,16 +8,12 @@ In the following functions, when `canConsume` is `true`, it means that the `Cons
 
 Read the [source code](https://github.com/Apostolique/Apos.Input/blob/master/Source/ICondition.cs).
 
----
-
 ## Pressed
 
 ```csharp
 bool Pressed(bool canConsume = true);
 ```
 Previous state is `off`, current state is `on`. Triggers only on the first frame that the current state becomes `on`.
-
----
 
 ## Held
 
@@ -26,8 +22,6 @@ bool Held(bool canConsume = true);
 ```
 Previous state ignored, current state is `on`. Triggers every frame for as long as the current state stays `on`.
 
----
-
 ## HeldOnly
 
 ```csharp
@@ -35,16 +29,12 @@ bool HeldOnly(bool canConsume = true);
 ```
 Previous state is `on`, current state is `on`. Since `HeldOnly` doesn't get triggered on the same frame as `Pressed` it's useful as a way to break an action into multiple steps.
 
----
-
 ## Released
 
 ```csharp
 bool Released(bool canConsume = true);
 ```
 Previous state is `on`, current state is `off`. Triggers only on the first frame that the current state becomes `off` after it was `on`.
-
----
 
 ## Consume
 
