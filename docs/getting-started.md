@@ -55,7 +55,7 @@ This library provides an API over various input types.
 
 ## Static usage
 
-If you don't want to setup anything, you can use `KeyboardCondition`, `GamePadCondition`, and `MouseCondition` statically.
+If you don't want to instantiate anything, you can use `KeyboardCondition`, `GamePadCondition`, and `MouseCondition` statically.
 
 ```csharp
 if (KeyboardCondition.Pressed(Keys.Space) ||
