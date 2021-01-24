@@ -70,16 +70,37 @@ namespace Apos.Input.Track {
             }
             return false;
         }
+        /// <returns>Returns true when the scroll wheel is scrolled.</returns>
+        public static bool Scrolled(bool canConsume = true) {
+            if (IsUnique(MouseSensor.ScrollWheel) && Apos.Input.MouseCondition.Scrolled()) {
+                if (canConsume)
+                    Consume(MouseSensor.ScrollWheel);
+                return true;
+            }
+            return false;
+        }
+        /// <returns>Returns the difference between last frame and this frame's scroll wheel value.</returns>
+        public static int ScrollDelta => Apos.Input.MouseCondition.ScrollDelta;
+
         /// <summary>Mark the mouse button as used for this frame.</summary>
         public static void Consume(MouseButton button) {
-            Tracker[button] = InputHelper.CurrentFrame;
+            ButtonTracker[button] = InputHelper.CurrentFrame;
         }
         /// <summary>Checks if the given mouse button is unique for this frame.</summary>
-        public static bool IsUnique(MouseButton button) => !Tracker.ContainsKey(button) || Tracker[button] != InputHelper.CurrentFrame;
+        public static bool IsUnique(MouseButton button) => !ButtonTracker.ContainsKey(button) || ButtonTracker[button] != InputHelper.CurrentFrame;
+
+        /// <summary>Mark the mouse sensor as used for this frame.</summary>
+        public static void Consume(MouseSensor sensor) {
+            SensorTracker[sensor] = InputHelper.CurrentFrame;
+        }
+        /// <summary>Checks if the given mouse sensor is unique for this frame.</summary>
+        public static bool IsUnique(MouseSensor sensor) => !SensorTracker.ContainsKey(sensor) || SensorTracker[sensor] != InputHelper.CurrentFrame;
 
         private MouseButton _button;
 
-        /// <summary>Tracks buttons being used each frames.</summary>
-        protected static Dictionary<MouseButton, uint> Tracker = new Dictionary<MouseButton, uint>();
+        /// <summary>Tracks mouse buttons being used each frames.</summary>
+        protected static Dictionary<MouseButton, uint> ButtonTracker = new Dictionary<MouseButton, uint>();
+        /// <summary>Tracks mouse sensors being used each frames.</summary>
+        protected static Dictionary<MouseSensor, uint> SensorTracker = new Dictionary<MouseSensor, uint>();
     }
 }

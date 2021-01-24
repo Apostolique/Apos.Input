@@ -32,7 +32,7 @@ namespace Apos.Input.Track {
         }
         /// <summary>Mark the condition as used.</summary>
         public void Consume() {
-            Tracker[(_button, _gamePadIndex)] = InputHelper.CurrentFrame;
+            ButtonTracker[(_button, _gamePadIndex)] = InputHelper.CurrentFrame;
         }
 
         /// <returns>Returns true when the mouse button was released and is now pressed.</returns>
@@ -73,15 +73,24 @@ namespace Apos.Input.Track {
         }
         /// <summary>Mark the gamepad button as used for this frame.</summary>
         public static void Consume(GamePadButton button, int gamePadIndex) {
-            Tracker[(button, gamePadIndex)] = InputHelper.CurrentFrame;
+            ButtonTracker[(button, gamePadIndex)] = InputHelper.CurrentFrame;
         }
         /// <summary>Checks if the given gamepad button is unique for this frame.</summary>
-        public static bool IsUnique(GamePadButton button, int gamePadIndex) => !Tracker.ContainsKey((button, gamePadIndex)) || Tracker[(button, gamePadIndex)] != InputHelper.CurrentFrame;
+        public static bool IsUnique(GamePadButton button, int gamePadIndex) => !ButtonTracker.ContainsKey((button, gamePadIndex)) || ButtonTracker[(button, gamePadIndex)] != InputHelper.CurrentFrame;
+
+        /// <summary>Mark the gamepad sensor as used for this frame.</summary>
+        public static void Consume(GamePadSensor sensor, int gamePadIndex) {
+            SensorTracker[(sensor, gamePadIndex)] = InputHelper.CurrentFrame;
+        }
+        /// <summary>Checks if the given gamepad sensor is unique for this frame.</summary>
+        public static bool IsUnique(GamePadSensor sensor, int gamePadIndex) => !SensorTracker.ContainsKey((sensor, gamePadIndex)) || SensorTracker[(sensor, gamePadIndex)] != InputHelper.CurrentFrame;
 
         private GamePadButton _button;
         private int _gamePadIndex;
 
-        /// <summary>Tracks buttons being used each frames.</summary>
-        protected static Dictionary<(GamePadButton, int), uint> Tracker = new Dictionary<(GamePadButton, int), uint>();
+        /// <summary>Tracks gamepad buttons being used each frames.</summary>
+        protected static Dictionary<(GamePadButton, int), uint> ButtonTracker = new Dictionary<(GamePadButton, int), uint>();
+        /// <summary>Tracks gamepad sensors being used each frames.</summary>
+        protected static Dictionary<(GamePadSensor, int), uint> SensorTracker = new Dictionary<(GamePadSensor, int), uint>();
     }
 }

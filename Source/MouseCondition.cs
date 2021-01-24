@@ -51,6 +51,11 @@ namespace Apos.Input {
             return InputHelper.MouseButtons[button](InputHelper.NewMouse) == ButtonState.Released &&
                    InputHelper.MouseButtons[button](InputHelper.OldMouse) == ButtonState.Pressed;
         }
+        /// <returns>Returns true when the scroll wheel is scrolled.</returns>
+        public static bool Scrolled() => ScrollDelta != 0;
+        /// <returns>Returns the difference between last frame and this frame's scroll wheel value.</returns>
+        public static int ScrollDelta => InputHelper.NewMouse.ScrollWheelValue - InputHelper.OldMouse.ScrollWheelValue;
+
         /// <returns>Returns true when the mouse is within the game window and active.</returns>
         public static bool IsMouseValid => InputHelper.IsActive &&
                 0 <= InputHelper.NewMouse.X && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
