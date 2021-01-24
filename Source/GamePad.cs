@@ -1,5 +1,5 @@
 namespace Apos.Input {
-    /// <summary>Available gamepad buttons.</summary>
+    /// <summary>Gamepad buttons.</summary>
     public enum GamePadButton {
         /// <summary>A button.</summary>
         A,
@@ -31,5 +31,16 @@ namespace Apos.Input {
         Right,
         /// <summary>DPad up button.</summary>
         Up
+    }
+    /// <summary>Gamepad sensors.</summary>
+    public enum GamePadSensor {
+        /// <summary>Left analog trigger.</summary>
+        LeftTrigger,
+        /// <summary>Right analog trigger.</summary>
+        RightTrigger,
+        /// <summary>Left analog thumbstick.</summary>
+        LeftStick,
+        /// <summary>Right analog thumbstick.</summary>
+        RightStick
     }
 }
