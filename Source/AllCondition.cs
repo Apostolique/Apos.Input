@@ -41,7 +41,7 @@ namespace Apos.Input {
         /// Returns true when all the needed conditions are held.
         /// </returns>
         public bool Held(bool canConsume = true) {
-            bool held = true;
+            bool held = _conditions.Length > 0;
 
             foreach (ICondition c in _conditions) {
                 held = held && c.Held(false);
@@ -59,7 +59,7 @@ namespace Apos.Input {
         /// Returns true when all the needed conditions were held and are now held.
         /// </returns>
         public bool HeldOnly(bool canConsume = true) {
-            bool held = true;
+            bool held = _conditions.Length > 0;
 
             foreach (ICondition c in _conditions) {
                 held = held && c.HeldOnly(false);
