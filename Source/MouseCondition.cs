@@ -61,6 +61,9 @@ namespace Apos.Input {
                 0 <= InputHelper.NewMouse.X && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
                 0 <= InputHelper.NewMouse.Y && InputHelper.NewMouse.Y <= InputHelper.WindowHeight;
 
+        ///<returns>Returns the difference between the last frame and this frame's mouse position</returns>
+        public static Point MouseDelta => InputHelper.NewMouse.Position - InputHelper.OldMouse.Position;
+
         /// <summary>
         /// The button that will be checked.
         /// </summary>
