@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace Apos.Input.Track {
     /// <summary>
@@ -81,6 +82,18 @@ namespace Apos.Input.Track {
         }
         /// <returns>Returns the difference between last frame and this frame's scroll wheel value.</returns>
         public static int ScrollDelta => Apos.Input.MouseCondition.ScrollDelta;
+
+        /// <returns>Returns true when the mouse pointer is moved.</returns>
+        public static bool PointerMoved(bool canConsume = true) {
+            if (IsUnique(MouseSensor.Pointer) && Apos.Input.MouseCondition.PointerMoved()) {
+                if (canConsume)
+                    Consume(MouseSensor.Pointer);
+                return true;
+            }
+            return false;
+        }
+        ///<returns>Returns the difference between the last frame and this frame's mouse pointer position.</returns>
+        public static Point PointerDelta => Apos.Input.MouseCondition.PointerDelta;
 
         /// <summary>Mark the mouse button as used for this frame.</summary>
         public static void Consume(MouseButton button) {

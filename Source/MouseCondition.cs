@@ -57,13 +57,15 @@ namespace Apos.Input {
         /// <returns>Returns the difference between last frame and this frame's scroll wheel value.</returns>
         public static int ScrollDelta => InputHelper.NewMouse.ScrollWheelValue - InputHelper.OldMouse.ScrollWheelValue;
 
+        /// <returns>Returns true when the mouse pointer is moved.</returns>
+        public static bool PointerMoved() => PointerDelta != Point.Zero;
+        ///<returns>Returns the difference between the last frame and this frame's mouse pointer position.</returns>
+        public static Point PointerDelta => InputHelper.NewMouse.Position - InputHelper.OldMouse.Position;
+
         /// <returns>Returns true when the mouse is within the game window and active.</returns>
         public static bool IsMouseValid => InputHelper.IsActive &&
                 0 <= InputHelper.NewMouse.X && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
                 0 <= InputHelper.NewMouse.Y && InputHelper.NewMouse.Y <= InputHelper.WindowHeight;
-
-        ///<returns>Returns the difference between the last frame and this frame's mouse pointer position</returns>
-        public static Point PointerDelta => InputHelper.NewMouse.Position - InputHelper.OldMouse.Position;
 
         /// <summary>
         /// The button that will be checked.
