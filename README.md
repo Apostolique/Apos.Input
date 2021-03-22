@@ -23,10 +23,10 @@ Polling input library for MonoGame.
 
 ## Usage samples
 
-In your game's `Initialize()`, pass the game class to `InputHelper.Setup()`:
+In your game's `LoadContent()`, pass the game class to `InputHelper.Setup()`:
 
 ```csharp
-protected override void Initialize() {
+protected override void LoadContent() {
     InputHelper.Setup(this);
 }
 ```

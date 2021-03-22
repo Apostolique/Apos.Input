@@ -15,10 +15,10 @@ using Apos.Input;
 using Track = Apos.Input.Track;
 ```
 
-In your game's `Initialize()`, pass the game class to `InputHelper.Setup()`:
+In your game's `LoadContent()`, pass the game class to `InputHelper.Setup()`:
 
 ```csharp
-protected override void Initialize() {
+protected override void LoadContent() {
     InputHelper.Setup(this);
 }
 ```
