@@ -111,7 +111,7 @@ Use `AllCondition` to require multiple keys at the same time.
 ```csharp
 ICondition run =
     new AllCondition(
-        new KeyboardCondition(Keys.Shift),
+        new KeyboardCondition(Keys.LeftShift),
         new KeyboardCondition(Keys.Right)
     );
 
@@ -154,7 +154,7 @@ An issue arises where `walk` will trigger during the `run` since both need the `
 ```csharp
 ICondition run =
     new AllCondition(
-        new KeyboardCondition(Keys.Shift),
+        new KeyboardCondition(Keys.LeftShift),
         new Track.KeyboardCondition(Keys.Right)
     );
 ICondition walk = new Track.KeyboardCondition(Keys.Right);
