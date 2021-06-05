@@ -1,5 +1,7 @@
 # Getting started
 
+This guide will show you how to get started with this library.
+
 ## Install
 
 Install using the following dotnet command:

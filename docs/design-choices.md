@@ -1,5 +1,7 @@
 # Design choices
 
+Design an ideas behind this library.
+
 ## Polling
 
 This library's goal is to enable a [polling-based](https://en.wikipedia.org/wiki/Polling_(computer_science)) paradigm on input handling. [Inputs](https://en.wikipedia.org/wiki/Input_device) come from mouse, keyboard, gamepad, touch screen, etc. Polling means that you can check for an input's current state anywhere that feels natural in your game code instead of managing them through [events and callbacks](https://en.wikipedia.org/wiki/Event_(computing)).
