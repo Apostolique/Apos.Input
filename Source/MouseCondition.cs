@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Apos.Input {
@@ -16,19 +16,19 @@ namespace Apos.Input {
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_button) && IsMouseValid;
+            return IsMouseValid && (Pressed(_button) || !InputHelper.OldIsActive && Held(_button));
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_button) && InputHelper.IsActive;
+            return InputHelper.IsActive && Held(_button);
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_button) && InputHelper.IsActive;
+            return InputHelper.IsActive && InputHelper.OldIsActive && HeldOnly(_button);
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_button) && InputHelper.IsActive;
+            return InputHelper.IsActive && Released(_button);
         }
         /// <summary>Does nothing since this condition isn't tracked.</summary>
         public void Consume() { }
