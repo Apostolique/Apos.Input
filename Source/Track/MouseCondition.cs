@@ -16,19 +16,19 @@ namespace Apos.Input.Track {
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_button, canConsume) && Input.MouseCondition.IsMouseValid;
+            return Input.MouseCondition.IsMouseValid && (Pressed(_button, canConsume) || !InputHelper.OldIsActive && Held(_button, canConsume));
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_button, canConsume) && InputHelper.IsActive;
+            return InputHelper.IsActive && Held(_button, canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_button, canConsume) && InputHelper.IsActive;
+            return InputHelper.IsActive && InputHelper.OldIsActive && HeldOnly(_button, canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_button, canConsume) && InputHelper.IsActive;
+            return InputHelper.IsActive && Released(_button, canConsume);
         }
         /// <summary>Mark the condition as used.</summary>
         public void Consume() {
