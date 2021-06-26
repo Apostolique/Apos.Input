@@ -17,9 +17,13 @@ namespace Apos.Input {
             set;
         }
         /// <summary>
+        /// Checks the game previous was active state.
+        /// </summary>
+        public static bool OldIsActive => _oldIsActive;
+        /// <summary>
         /// Checks if the game is active. Usually this is when the game window has focus.
         /// </summary>
-        public static bool IsActive => Game.IsActive;
+        public static bool IsActive => _newIsActive;
         /// <summary>
         /// The game window.
         /// </summary>
@@ -96,6 +100,7 @@ namespace Apos.Input {
         public static void Setup(Game game) {
             Game = game;
 
+            _newIsActive = Game.IsActive;
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
@@ -115,10 +120,12 @@ namespace Apos.Input {
         /// Call this at the beginning of your update loop.
         /// </summary>
         public static void UpdateSetup() {
+            _oldIsActive = _newIsActive;
             _oldMouse = _newMouse;
             _oldKeyboard = _newKeyboard;
             _newGamepad.CopyTo(_oldGamePad, 0);
 
+            _newIsActive = Game.IsActive;
             _newMouse = Mouse.GetState();
             _newKeyboard = Keyboard.GetState();
 
@@ -143,6 +150,14 @@ namespace Apos.Input {
             _textEvents.Add(e);
         }
 
+        /// <summary>
+        /// The previous active state.
+        /// </summary>
+        private static bool _oldIsActive;
+        /// <summary>
+        /// The current active state.
+        /// </summary>
+        private static bool _newIsActive;
         /// <summary>
         /// The mouse's previous state.
         /// </summary>
