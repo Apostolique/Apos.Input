@@ -1,6 +1,6 @@
 # Design choices
 
-Design an ideas behind this library.
+Design and ideas behind this library.
 
 ## Polling
 
