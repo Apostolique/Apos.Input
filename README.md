@@ -2,7 +2,7 @@
 
 Polling input library for MonoGame.
 
-[![Discord](https://img.shields.io/discord/355231098122272778.svg)](https://discord.gg/N9t26Uv)
+[![Discord](https://img.shields.io/discord/355231098122272778.svg)](https://discord.gg/MonoGame)
 
 ## Documentation
 
