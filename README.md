@@ -35,19 +35,19 @@ In your game's `Update(GameTime gameTime)`, call the two functions:
 
 ```csharp
 protected override void Update(GameTime gametime) {
-    //Call UpdateSetup at the start.
+    // Call UpdateSetup at the start.
     InputHelper.UpdateSetup();
 
-    //...
+    // ...
 
-    //Call UpdateCleanup at the end.
+    // Call UpdateCleanup at the end.
     InputHelper.UpdateCleanup();
 }
 ```
 
 ```csharp
-//Create a condition to jump.
-//It should work on space, the first gamepad's A button, or the mouse's left button.
+// Create a condition to jump.
+// It should work on space, the first gamepad's A button, or the mouse's left button.
 ICondition jump =
     new AnyCondition(
         new KeyboardCondition(Keys.Space),
@@ -57,9 +57,9 @@ ICondition jump =
 ```
 
 ```csharp
-//To check if the jump is triggered:
+// To check if the jump is triggered:
 if (jump.Pressed()) {
-    //Do the jump change.
+    // Do the jump change.
 }
 ```
 
