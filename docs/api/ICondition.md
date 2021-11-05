@@ -6,7 +6,7 @@ In the following functions, when `canConsume` is `true`, it means that the `Cons
 
 ## Source code
 
-Read the [source code](https://github.com/Apostolique/Apos.Input/blob/master/Source/ICondition.cs).
+Read the [source code](https://github.com/Apostolique/Apos.Input/blob/main/Source/ICondition.cs).
 
 ## Pressed
 

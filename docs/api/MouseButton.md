@@ -4,7 +4,7 @@ An enum with all the available mouse buttons.
 
 ## Source code
 
-Read the [source code](https://github.com/Apostolique/Apos.Input/blob/master/Source/MouseButton.cs).
+Read the [source code](https://github.com/Apostolique/Apos.Input/blob/main/Source/MouseButton.cs).
 
 ## LeftButton
 

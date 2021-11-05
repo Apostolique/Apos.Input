@@ -4,7 +4,7 @@ This static class holds all the data required to handle inputs. It takes care of
 
 ## Source code
 
-Read the [source code](https://github.com/Apostolique/Apos.Input/blob/master/Source/InputHelper.cs).
+Read the [source code](https://github.com/Apostolique/Apos.Input/blob/main/Source/InputHelper.cs).
 
 ## Game
 
