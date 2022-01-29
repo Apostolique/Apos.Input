@@ -12,10 +12,7 @@ namespace Apos.Input {
     public static class InputHelper {
 
         /// <value>Pass your game class here.</value>
-        public static Game Game {
-            get;
-            set;
-        }
+        public static Game Game { get; set; }
         /// <summary>
         /// Checks the game previous was active state.
         /// </summary>
@@ -31,11 +28,11 @@ namespace Apos.Input {
         /// <summary>
         /// The game window's width.
         /// </summary>
-        public static int WindowWidth => Window.ClientBounds.Width;
+        public static int WindowWidth => Game.GraphicsDevice.PresentationParameters.BackBufferWidth;
         /// <summary>
         /// The game window's height.
         /// </summary>
-        public static int WindowHeight => Window.ClientBounds.Height;
+        public static int WindowHeight => Game.GraphicsDevice.PresentationParameters.BackBufferHeight;
         /// <summary>
         /// The mouse's previous state.
         /// </summary>
