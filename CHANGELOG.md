@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet!
 
+## [2.4.2] - 2022-01-29
+
+### Changed
+
+- Now gets the window width and height from the back buffer instead of the window client bounds.
+
 ## [2.4.1] - 2021-06-26
 
 ## Fixed
@@ -89,7 +95,8 @@ Nothing yet!
 
 - Everything!
 
-[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v2.4.1...HEAD
+[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v2.4.2...HEAD
+[2.4.2]: https://github.com/Apostolique/Apos.Input/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/Apostolique/Apos.Input/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/Apostolique/Apos.Input/compare/v2.3.3...v2.4.0
 [2.3.3]: https://github.com/Apostolique/Apos.Input/compare/v2.3.2...v2.3.3
