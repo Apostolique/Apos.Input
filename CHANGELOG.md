@@ -16,7 +16,7 @@ Nothing yet!
 
 ## [2.4.1] - 2021-06-26
 
-## Fixed
+### Fixed
 
 - MouseCondition focus fix for the tracking system
 
