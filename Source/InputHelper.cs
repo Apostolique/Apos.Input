@@ -109,8 +109,10 @@ namespace Apos.Input {
             }
 
             _newTouchCollection = TouchPanel.GetState();
-
+            
+            #if WINDOWS || WINDOWS_UAP || DESKTOPGL || ANGLE
             Window.TextInput += ProcessTextInput;
+            #endif
         }
 
         /// <summary>
