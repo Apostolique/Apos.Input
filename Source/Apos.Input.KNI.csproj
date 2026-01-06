@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <PackageId>Apos.Input</PackageId>
-    <Title>Apos.Input</Title>
-    <Description>Input library for MonoGame.</Description>
+    <PackageId>Apos.Input.KNI</PackageId>
+    <Title>Apos.Input.KNI</Title>
+    <Description>Input library for KNI.</Description>
     <Authors>Jean-David Moisan</Authors>
     <Company>Vyne Enterprise Inc.</Company>
     <Copyright>Copyright 2026</Copyright>
@@ -23,7 +23,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" PrivateAssets="All" Version="3.8.0.1641" />
+    <PackageReference Include="nkast.Xna.Framework" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Game" Version="4.2.9001" />
+    <PackageReference Include="nkast.Xna.Framework.Input" Version="4.2.9001" />
   </ItemGroup>
 
   <ItemGroup>
