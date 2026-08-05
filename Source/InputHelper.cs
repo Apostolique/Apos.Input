@@ -128,6 +128,8 @@ namespace Apos.Input {
             _newTouch = TouchPanel.GetState();
             _oldTouch = _newTouch;
 
+            Pointer.Setup();
+
             Window.TextInput += ProcessTextInput;
         }
 
@@ -157,6 +159,8 @@ namespace Apos.Input {
             _newTouch = TouchPanel.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
             FindLostTouches();
+
+            Pointer.Update();
 
             _currentFrame++;
         }
