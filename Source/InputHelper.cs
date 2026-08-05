@@ -66,9 +66,13 @@ namespace Apos.Input {
         /// </summary>
         public static GamePadDeadZone[] GamePadDeadZone => _gamePadDeadZone;
         /// <summary>
-        /// A touch collection that holds the previous and current touch locations.
+        /// The touch panel's previous contacts.
         /// </summary>
-        public static TouchCollection NewTouchCollection => _newTouchCollection;
+        public static TouchCollection OldTouch => _oldTouch;
+        /// <summary>
+        /// The touch panel's current contacts.
+        /// </summary>
+        public static TouchCollection NewTouch => _newTouch;
         /// <summary>
         /// Gives info about a touch panel.
         /// </summary>
@@ -113,7 +117,8 @@ namespace Apos.Input {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
-            _newTouchCollection = TouchPanel.GetState();
+            _newTouch = TouchPanel.GetState();
+            _oldTouch = _newTouch;
 
             Window.TextInput += ProcessTextInput;
         }
@@ -139,7 +144,8 @@ namespace Apos.Input {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
-            _newTouchCollection = TouchPanel.GetState();
+            _oldTouch = _newTouch;
+            _newTouch = TouchPanel.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
 
             _currentFrame++;
@@ -196,9 +202,13 @@ namespace Apos.Input {
         /// </summary>
         private static GamePadDeadZone[] _gamePadDeadZone = new GamePadDeadZone[GamePad.MaximumGamePadCount];
         /// <summary>
-        /// A touch collection that holds the previous and current touch locations.
+        /// The touch panel's previous contacts.
         /// </summary>
-        private static TouchCollection _newTouchCollection;
+        private static TouchCollection _oldTouch;
+        /// <summary>
+        /// The touch panel's current contacts.
+        /// </summary>
+        private static TouchCollection _newTouch;
         /// <summary>
         /// Gives info about a touch panel.
         /// </summary>
