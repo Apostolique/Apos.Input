@@ -7,8 +7,12 @@ Polling input library for MonoGame.
 ## Documentation
 
 * [Getting started](https://apostolique.github.io/Apos.Input/getting-started/)
-* [Design choices](https://apostolique.github.io/Apos.Input/design-choices/)
-* [API](https://apostolique.github.io/Apos.Input/api/)
+* [Conditions](https://apostolique.github.io/Apos.Input/conditions/)
+* [Tracking](https://apostolique.github.io/Apos.Input/tracking/)
+* [Touch](https://apostolique.github.io/Apos.Input/touch/)
+* [Focus](https://apostolique.github.io/Apos.Input/focus/)
+* [Durations](https://apostolique.github.io/Apos.Input/durations/)
+* [Text input](https://apostolique.github.io/Apos.Input/text-input/)
 
 ## Build
 
@@ -18,6 +22,8 @@ Polling input library for MonoGame.
 
 * Manages the input states for you every frame
 * Mouse, Keyboard, and GamePad buttons abstractions
+* Touch screen contacts, with one pointer position shared with the mouse
+* Long press and key repeat, on any condition and so on any device
 * Tracking mode so that you don't accidentally consume the same input multiple times
 * Static or instanced usage
 
@@ -34,9 +40,9 @@ protected override void LoadContent() {
 In your game's `Update(GameTime gameTime)`, call the two functions:
 
 ```csharp
-protected override void Update(GameTime gametime) {
-    // Call UpdateSetup at the start.
-    InputHelper.UpdateSetup();
+protected override void Update(GameTime gameTime) {
+    // Call UpdateSetup at the start. It needs the GameTime to drive InputHelper.TotalMS.
+    InputHelper.UpdateSetup(gameTime);
 
     // ...
 
@@ -47,12 +53,14 @@ protected override void Update(GameTime gametime) {
 
 ```csharp
 // Create a condition to jump.
-// It should work on space, the first gamepad's A button, or the mouse's left button.
+// It should work on space, the first gamepad's A button, the mouse's left button,
+// or a touch screen contact.
 ICondition jump =
     new AnyCondition(
         new KeyboardCondition(Keys.Space),
         new GamePadCondition(GamePadButton.A, 0),
-        new MouseCondition(MouseButton.LeftButton)
+        new MouseCondition(MouseButton.LeftButton),
+        new TouchCondition()
     );
 ```
 
