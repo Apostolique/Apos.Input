@@ -124,6 +124,7 @@ namespace Apos.Input {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
+            SyncTouchDisplaySize();
             _newTouch = TouchPanel.GetState();
             _oldTouch = _newTouch;
 
@@ -151,6 +152,7 @@ namespace Apos.Input {
                 _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
             }
 
+            SyncTouchDisplaySize();
             _oldTouch = _newTouch;
             _newTouch = TouchPanel.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
@@ -183,6 +185,20 @@ namespace Apos.Input {
                 if (!_newTouch.FindById(t.Id, out _)) {
                     _lostTouches.Add(t);
                 }
+            }
+        }
+        /// <summary>
+        /// Touch positions are scaled by the touch panel's display size, so it has to match the
+        /// back buffer that WindowWidth and WindowHeight report. GraphicsDeviceManager sets this
+        /// in ApplyChanges, but a window resize changes the back buffer without going through it.
+        /// Writing resets the touch scale, so only write on a change.
+        /// </summary>
+        private static void SyncTouchDisplaySize() {
+            if (TouchPanel.DisplayWidth != WindowWidth) {
+                TouchPanel.DisplayWidth = WindowWidth;
+            }
+            if (TouchPanel.DisplayHeight != WindowHeight) {
+                TouchPanel.DisplayHeight = WindowHeight;
             }
         }
 
