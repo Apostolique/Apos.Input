@@ -74,6 +74,13 @@ namespace Apos.Input {
         /// </summary>
         public static TouchCollection NewTouch => _newTouch;
         /// <summary>
+        /// Contacts that went away without reporting Released, at their last known location.
+        /// Usually empty. A gesture the system takes over arrives as a cancel, which MonoGame
+        /// turns into a release, and it releases every contact itself on an orientation change.
+        /// This is the net for whatever doesn't. Anything holding on to a touch id can let go here.
+        /// </summary>
+        public static List<TouchLocation> LostTouches => _lostTouches;
+        /// <summary>
         /// Gives info about a touch panel.
         /// </summary>
         public static TouchPanelCapabilities TouchPanelCapabilities => _touchPanelCapabilities;
@@ -147,6 +154,7 @@ namespace Apos.Input {
             _oldTouch = _newTouch;
             _newTouch = TouchPanel.GetState();
             _touchPanelCapabilities = TouchPanel.GetCapabilities();
+            FindLostTouches();
 
             _currentFrame++;
         }
@@ -159,6 +167,23 @@ namespace Apos.Input {
 
         private static void ProcessTextInput(object sender, TextInputEventArgs e) {
             _textEvents.Add(e);
+        }
+
+        /// <summary>
+        /// A contact that ends normally shows up once with a Released state. One that goes away
+        /// without that is only detectable by missing from this frame's collection.
+        /// </summary>
+        private static void FindLostTouches() {
+            _lostTouches.Clear();
+
+            foreach (TouchLocation t in _oldTouch) {
+                if (t.State == TouchLocationState.Released || t.State == TouchLocationState.Invalid) {
+                    continue;
+                }
+                if (!_newTouch.FindById(t.Id, out _)) {
+                    _lostTouches.Add(t);
+                }
+            }
         }
 
         /// <summary>
@@ -209,6 +234,10 @@ namespace Apos.Input {
         /// The touch panel's current contacts.
         /// </summary>
         private static TouchCollection _newTouch;
+        /// <summary>
+        /// Contacts that went away without reporting Released.
+        /// </summary>
+        private static List<TouchLocation> _lostTouches = new List<TouchLocation>();
         /// <summary>
         /// Gives info about a touch panel.
         /// </summary>
