@@ -6,7 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-Nothing yet!
+### Added
+
+- TouchCondition, it triggers on any touch screen contact and has static methods for one contact at a time
+- Ability for Track.TouchCondition to claim a number of contacts and hold them until they lift or another condition takes one
+- Track.TouchCondition, it tracks each contact separately so consuming one finger leaves the others free
+- Pointer, a single position that follows the touch screen while something is touching it and the mouse otherwise
+- PointerSource enum, it tells which device the pointer position came from
+- HoldCondition, it wraps another condition and triggers once it's been held long enough, with a Progress from 0 to 1
+- RepeatCondition, it repeats another condition after a delay the way a key repeats in a text field
+- TotalMS to InputHelper, the clock that duration based conditions read
+- OldTouch to InputHelper
+- LostTouches to InputHelper, the contacts that went away without reporting Released
+
+### Changed
+
+- UpdateSetup now takes a GameTime, the version without it is gone
+- NewTouchCollection is now NewTouch
+- The touch panel's display size now follows the back buffer
+- Pressed now triggers for keyboard and gamepad when the game gets focus back with a button still held, the way MouseCondition already did
+
+### Fixed
+
+- Released now triggers for keyboard, mouse, and gamepad when the game loses focus while a button is held
 
 ## [2.5.0] - 2026-01-06
 
