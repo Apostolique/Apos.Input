@@ -74,6 +74,11 @@ namespace Apos.Input {
         /// </summary>
         public static TouchPanelCapabilities TouchPanelCapabilities => _touchPanelCapabilities;
         /// <summary>
+        /// Milliseconds since the game started, from GameTime.TotalGameTime. Conditions that
+        /// measure durations read this. Settable for replays or a custom clock.
+        /// </summary>
+        public static double TotalMS { get; set; }
+        /// <summary>
         /// Useful for handling text inputs from any keyboard layouts. This is useful when coding textboxes.
         /// </summary>
         public static List<TextInputEventArgs> TextEvents => _textEvents;
@@ -116,7 +121,10 @@ namespace Apos.Input {
         /// <summary>
         /// Call this at the beginning of your update loop.
         /// </summary>
-        public static void UpdateSetup() {
+        /// <param name="gameTime">Drives TotalMS, which duration based conditions read.</param>
+        public static void UpdateSetup(GameTime gameTime) {
+            TotalMS = gameTime.TotalGameTime.TotalMilliseconds;
+
             _oldIsActive = _newIsActive;
             _oldMouse = _newMouse;
             _oldKeyboard = _newKeyboard;
