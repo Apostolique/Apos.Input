@@ -4,30 +4,32 @@ using Microsoft.Xna.Framework.Input;
 namespace Apos.Input.Track {
     /// <summary>
     /// Checks various conditions on a specific keyboard key.
-    /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
+    /// Non static methods only count the key as down while the game is active. Losing focus
+    /// reports a release, and coming back with the key still down reports a press.
     /// </summary>
     public class KeyboardCondition : ICondition {
 
         /// <param name="key">The key to operate on.</param>
         public KeyboardCondition(Keys key) {
             _key = key;
+            _condition = new Input.KeyboardCondition(key);
         }
 
         /// <returns>Returns true when the key was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_key, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Pressed(), canConsume);
         }
         /// <returns>Returns true when the key is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_key, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Held(), canConsume);
         }
         /// <returns>Returns true when the key was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_key, canConsume) && InputHelper.IsActive;
+            return Check(_condition.HeldOnly(), canConsume);
         }
         /// <returns>Returns true when the key was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_key, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Released(), canConsume);
         }
         /// <summary>Mark the key as used.</summary>
         public void Consume() {
@@ -78,7 +80,21 @@ namespace Apos.Input.Track {
         /// <summary>Checks if the given key is unique for this frame.</summary>
         public static bool IsUnique(Keys key) => !Tracker.ContainsKey(key) || Tracker[key] != InputHelper.CurrentFrame;
 
+        /// <summary>
+        /// The untracked condition answers whether the key is in that state, tracking only decides
+        /// whether this instance is the one that gets to see it.
+        /// </summary>
+        private bool Check(bool state, bool canConsume) {
+            if (IsUnique(_key) && state) {
+                if (canConsume)
+                    Consume(_key);
+                return true;
+            }
+            return false;
+        }
+
         private Keys _key;
+        private Input.KeyboardCondition _condition;
 
         /// <summary>Tracks keys being used each frames.</summary>
         protected static Dictionary<Keys, uint> Tracker = new Dictionary<Keys, uint>();

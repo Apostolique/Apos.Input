@@ -3,7 +3,8 @@
 namespace Apos.Input {
     /// <summary>
     /// Checks various conditions on a specific keyboard key.
-    /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
+    /// Non static methods only count the key as down while the game is active. Losing focus
+    /// reports a release, and coming back with the key still down reports a press.
     /// </summary>
     public class KeyboardCondition : ICondition {
 
@@ -14,19 +15,19 @@ namespace Apos.Input {
 
         /// <returns>Returns true when the key was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_key) && InputHelper.IsActive;
+            return Down() && !WasDown();
         }
         /// <returns>Returns true when the key is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_key) && InputHelper.IsActive;
+            return Down();
         }
         /// <returns>Returns true when the key was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_key) && InputHelper.IsActive;
+            return Down() && WasDown();
         }
         /// <returns>Returns true when the key was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_key) && InputHelper.IsActive;
+            return !Down() && WasDown();
         }
         /// <summary>Does nothing since this condition isn't tracked.</summary>
         public void Consume() { }
@@ -47,6 +48,15 @@ namespace Apos.Input {
         public static bool Released(Keys key) {
             return InputHelper.NewKeyboard.IsKeyUp(key) && InputHelper.OldKeyboard.IsKeyDown(key);
         }
+
+        /// <summary>
+        /// A key only counts as down while the game is active, which is what turns a focus change
+        /// into a press or a release on its own. Waiting for the device to report it doesn't work
+        /// since the platform decides what happens to a held input when focus goes away.
+        /// </summary>
+        private bool Down() => InputHelper.IsActive && Held(_key);
+        /// <summary>Whether the key counted as down last frame.</summary>
+        private bool WasDown() => InputHelper.OldIsActive && InputHelper.OldKeyboard.IsKeyDown(_key);
 
         /// <summary>
         /// The key that will be checked.

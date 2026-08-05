@@ -3,7 +3,8 @@
 namespace Apos.Input.Track {
     /// <summary>
     /// Checks various conditions on a specific gamepad button.
-    /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
+    /// Non static methods only count the button as down while the game is active. Losing focus
+    /// reports a release, and coming back with the button still down reports a press.
     /// </summary>
     public class GamePadCondition : ICondition {
 
@@ -12,23 +13,24 @@ namespace Apos.Input.Track {
         public GamePadCondition(GamePadButton button, int gamePadIndex) {
             _button = button;
             _gamePadIndex = gamePadIndex;
+            _condition = new Input.GamePadCondition(button, gamePadIndex);
         }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_button, _gamePadIndex, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Pressed(), canConsume);
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_button, _gamePadIndex, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Held(), canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_button, _gamePadIndex, canConsume) && InputHelper.IsActive;
+            return Check(_condition.HeldOnly(), canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_button, _gamePadIndex, canConsume) && InputHelper.IsActive;
+            return Check(_condition.Released(), canConsume);
         }
         /// <summary>Mark the condition as used.</summary>
         public void Consume() {
@@ -85,8 +87,22 @@ namespace Apos.Input.Track {
         /// <summary>Checks if the given gamepad sensor is unique for this frame.</summary>
         public static bool IsUnique(GamePadSensor sensor, int gamePadIndex) => !SensorTracker.ContainsKey((sensor, gamePadIndex)) || SensorTracker[(sensor, gamePadIndex)] != InputHelper.CurrentFrame;
 
+        /// <summary>
+        /// The untracked condition answers whether the button is in that state, tracking only
+        /// decides whether this instance is the one that gets to see it.
+        /// </summary>
+        private bool Check(bool state, bool canConsume) {
+            if (IsUnique(_button, _gamePadIndex) && state) {
+                if (canConsume)
+                    Consume(_button, _gamePadIndex);
+                return true;
+            }
+            return false;
+        }
+
         private GamePadButton _button;
         private int _gamePadIndex;
+        private Input.GamePadCondition _condition;
 
         /// <summary>Tracks gamepad buttons being used each frames.</summary>
         protected static Dictionary<(GamePadButton, int), uint> ButtonTracker = new Dictionary<(GamePadButton, int), uint>();

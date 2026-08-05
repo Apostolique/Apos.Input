@@ -4,8 +4,9 @@ using Microsoft.Xna.Framework.Input;
 namespace Apos.Input {
     /// <summary>
     /// Checks various conditions on a specific mouse button.
-    /// Non static methods implicitly make sure that the game is active.
-    /// Pressed also makes sure the mouse is inside the window. Otherwise returns false.
+    /// Non static methods only count the button as down while the game is active. Losing focus
+    /// reports a release, and clicking the window to come back reports a press.
+    /// Pressed also makes sure the mouse is inside the window.
     /// </summary>
     public class MouseCondition : ICondition {
 
@@ -16,19 +17,19 @@ namespace Apos.Input {
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return IsMouseValid && (Pressed(_button) || !InputHelper.OldIsActive && Held(_button));
+            return IsMouseValid && Down() && !WasDown();
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return InputHelper.IsActive && Held(_button);
+            return Down();
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return InputHelper.IsActive && InputHelper.OldIsActive && HeldOnly(_button);
+            return Down() && WasDown();
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return InputHelper.IsActive && Released(_button);
+            return !Down() && WasDown();
         }
         /// <summary>Does nothing since this condition isn't tracked.</summary>
         public void Consume() { }
@@ -70,6 +71,17 @@ namespace Apos.Input {
             InputHelper.IsActive &&
             0 <= InputHelper.NewMouse.X && InputHelper.NewMouse.X <= InputHelper.WindowWidth &&
             0 <= InputHelper.NewMouse.Y && InputHelper.NewMouse.Y <= InputHelper.WindowHeight;
+
+        /// <summary>
+        /// A button only counts as down while the game is active, which is what turns a focus
+        /// change into a press or a release on its own. The device can't be relied on for it.
+        /// Mouse buttons come from the global cursor state, so they stay down through a focus
+        /// loss and report the release whenever the player gets around to letting go.
+        /// </summary>
+        private bool Down() => InputHelper.IsActive && Held(_button);
+        /// <summary>Whether the button counted as down last frame.</summary>
+        private bool WasDown() =>
+            InputHelper.OldIsActive && InputHelper.MouseButtons[_button](InputHelper.OldMouse) == ButtonState.Pressed;
 
         /// <summary>
         /// The button that will be checked.

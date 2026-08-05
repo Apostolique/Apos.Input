@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework.Input;
 namespace Apos.Input {
     /// <summary>
     /// Checks various conditions on a specific gamepad button for all gamepads.
-    /// Non static methods implicitly make sure that the game is active. Otherwise returns false.
+    /// Non static methods only count the button as down while the game is active. Losing focus
+    /// reports a release, and coming back with the button still down reports a press.
     /// </summary>
     public class AnyGamePadCondition : ICondition {
 
@@ -14,19 +15,19 @@ namespace Apos.Input {
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Pressed(_button) && InputHelper.IsActive;
+            return Down() && !WasDown();
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return Held(_button) && InputHelper.IsActive;
+            return Down();
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return HeldOnly(_button) && InputHelper.IsActive;
+            return Down() && WasDown();
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return Released(_button) && InputHelper.IsActive;
+            return !Down() && WasDown();
         }
         /// <summary>Does nothing since this condition isn't tracked.</summary>
         public void Consume() { }
@@ -65,6 +66,25 @@ namespace Apos.Input {
             for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                 if (InputHelper.GamePadButtons[button](InputHelper.NewGamePad, i) == ButtonState.Released &&
                     InputHelper.GamePadButtons[button](InputHelper.OldGamePad, i) == ButtonState.Pressed) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// A button only counts as down while the game is active, which is what turns a focus
+        /// change into a press or a release on its own. A gamepad keeps reporting through a focus
+        /// loss since it isn't attached to a window, so the release has to come from here.
+        /// </summary>
+        private bool Down() => InputHelper.IsActive && Held(_button);
+        /// <summary>Whether the button counted as down on any gamepad last frame.</summary>
+        private bool WasDown() {
+            if (!InputHelper.OldIsActive) {
+                return false;
+            }
+            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                if (InputHelper.GamePadButtons[_button](InputHelper.OldGamePad, i) == ButtonState.Pressed) {
                     return true;
                 }
             }

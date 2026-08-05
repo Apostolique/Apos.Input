@@ -4,31 +4,33 @@ using Microsoft.Xna.Framework;
 namespace Apos.Input.Track {
     /// <summary>
     /// Checks various conditions on a specific mouse button.
-    /// Non static methods implicitly make sure that the game is active.
-    /// Pressed also makes sure the mouse is inside the window. Otherwise returns false.
+    /// Non static methods only count the button as down while the game is active. Losing focus
+    /// reports a release, and clicking the window to come back reports a press.
+    /// Pressed also makes sure the mouse is inside the window.
     /// </summary>
     public class MouseCondition : ICondition {
 
         /// <param name="button">The button to operate on.</param>
         public MouseCondition(MouseButton button) {
             _button = button;
+            _condition = new Input.MouseCondition(button);
         }
 
         /// <returns>Returns true when the button was not pressed and is now pressed.</returns>
         public bool Pressed(bool canConsume = true) {
-            return Input.MouseCondition.IsMouseValid && (Pressed(_button, canConsume) || !InputHelper.OldIsActive && Held(_button, canConsume));
+            return Check(_condition.Pressed(), canConsume);
         }
         /// <returns>Returns true when the button is now pressed.</returns>
         public bool Held(bool canConsume = true) {
-            return InputHelper.IsActive && Held(_button, canConsume);
+            return Check(_condition.Held(), canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now pressed.</returns>
         public bool HeldOnly(bool canConsume = true) {
-            return InputHelper.IsActive && InputHelper.OldIsActive && HeldOnly(_button, canConsume);
+            return Check(_condition.HeldOnly(), canConsume);
         }
         /// <returns>Returns true when the button was pressed and is now not pressed.</returns>
         public bool Released(bool canConsume = true) {
-            return InputHelper.IsActive && Released(_button, canConsume);
+            return Check(_condition.Released(), canConsume);
         }
         /// <summary>Mark the condition as used.</summary>
         public void Consume() {
@@ -109,7 +111,21 @@ namespace Apos.Input.Track {
         /// <summary>Checks if the given mouse sensor is unique for this frame.</summary>
         public static bool IsUnique(MouseSensor sensor) => !SensorTracker.ContainsKey(sensor) || SensorTracker[sensor] != InputHelper.CurrentFrame;
 
+        /// <summary>
+        /// The untracked condition answers whether the button is in that state, tracking only
+        /// decides whether this instance is the one that gets to see it.
+        /// </summary>
+        private bool Check(bool state, bool canConsume) {
+            if (IsUnique(_button) && state) {
+                if (canConsume)
+                    Consume(_button);
+                return true;
+            }
+            return false;
+        }
+
         private MouseButton _button;
+        private Input.MouseCondition _condition;
 
         /// <summary>Tracks mouse buttons being used each frames.</summary>
         protected static Dictionary<MouseButton, uint> ButtonTracker = new Dictionary<MouseButton, uint>();
