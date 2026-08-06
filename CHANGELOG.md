@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+Nothing yet!
+
+## [3.0.0] - 2026-08-05
+
 ### Added
 
 - TouchCondition, it triggers on any touch screen contact and has static methods for one contact at a time
@@ -127,7 +131,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Everything!
 
-[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/Apostolique/Apos.Input/compare/v2.5.0...v3.0.0
 [2.5.0]: https://github.com/Apostolique/Apos.Input/compare/v2.4.2...v2.5.0
 [2.4.2]: https://github.com/Apostolique/Apos.Input/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/Apostolique/Apos.Input/compare/v2.4.0...v2.4.1
