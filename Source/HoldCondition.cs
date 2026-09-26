@@ -25,17 +25,17 @@ namespace Apos.Input {
         /// <returns>Returns true on the frame the hold reaches its duration.</returns>
         public bool Pressed(bool canConsume = true) {
             Sync();
-            return Report(_isDown && !_wasDown, canConsume);
+            return Report(_isDown && !_wasDown && Unconsumed(), canConsume);
         }
         /// <returns>Returns true while the hold is at or past its duration.</returns>
         public bool Held(bool canConsume = true) {
             Sync();
-            return Report(_isDown, canConsume);
+            return Report(_isDown && Unconsumed(), canConsume);
         }
         /// <returns>Returns true while the hold is past its duration and already was last frame.</returns>
         public bool HeldOnly(bool canConsume = true) {
             Sync();
-            return Report(_isDown && _wasDown, canConsume);
+            return Report(_isDown && _wasDown && Unconsumed(), canConsume);
         }
         /// <returns>Returns true on the frame a finished hold gets let go.</returns>
         public bool Released(bool canConsume = true) {
@@ -64,6 +64,8 @@ namespace Apos.Input {
             }
         }
 
+        /// <summary>Something else can consume the wrapped condition after the frame was worked out.</summary>
+        private bool Unconsumed() => _condition.Held(false);
         private bool Report(bool state, bool canConsume) {
             if (state && canConsume) {
                 _condition.Consume();

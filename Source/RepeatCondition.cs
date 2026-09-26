@@ -25,10 +25,12 @@ namespace Apos.Input {
         /// <returns>Returns true on the first frame it's held, then again on every repeat.</returns>
         public bool Pressed(bool canConsume = true) {
             Sync();
-            if (_triggered && canConsume) {
+            // Checked again on every call since something else can consume the wrapped condition after the frame was worked out.
+            bool pressed = _triggered && _condition.Held(false);
+            if (pressed && canConsume) {
                 _condition.Consume();
             }
-            return _triggered;
+            return pressed;
         }
         /// <returns>Returns true while the wrapped condition is held.</returns>
         public bool Held(bool canConsume = true) {
