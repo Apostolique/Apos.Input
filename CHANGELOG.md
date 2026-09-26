@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet!
 
+## [3.1.0] - 2026-09-25
+
+### Added
+
+- IInputSource and InputHelper.Setup(IInputSource) to read input from somewhere other than the real devices, no game needed
+- SimulatedInput, an input source you set by hand for tests
+
 ## [3.0.1] - 2026-09-25
 
 ### Fixed
@@ -137,7 +144,8 @@ Nothing yet!
 
 - Everything!
 
-[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/Apostolique/Apos.Input/compare/v3.0.1...v3.1.0
 [3.0.1]: https://github.com/Apostolique/Apos.Input/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Apostolique/Apos.Input/compare/v2.5.0...v3.0.0
 [2.5.0]: https://github.com/Apostolique/Apos.Input/compare/v2.4.2...v2.5.0

@@ -5,6 +5,7 @@
     <PackageId>Apos.Input.KNI</PackageId>
     <Title>Apos.Input.KNI</Title>
     <Description>Input library for KNI.</Description>
+    <DefineConstants>$(DefineConstants);KNI</DefineConstants>
     <Authors>Jean-David Moisan</Authors>
     <Company>Vyne Enterprise Inc.</Company>
     <Copyright>Copyright 2026</Copyright>

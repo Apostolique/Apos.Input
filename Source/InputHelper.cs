@@ -28,11 +28,11 @@ namespace Apos.Input {
         /// <summary>
         /// The game window's width.
         /// </summary>
-        public static int WindowWidth => Game.GraphicsDevice.PresentationParameters.BackBufferWidth;
+        public static int WindowWidth => Source?.WindowWidth ?? Game.GraphicsDevice.PresentationParameters.BackBufferWidth;
         /// <summary>
         /// The game window's height.
         /// </summary>
-        public static int WindowHeight => Game.GraphicsDevice.PresentationParameters.BackBufferHeight;
+        public static int WindowHeight => Source?.WindowHeight ?? Game.GraphicsDevice.PresentationParameters.BackBufferHeight;
         /// <summary>
         /// The mouse's previous state.
         /// </summary>
@@ -112,6 +112,7 @@ namespace Apos.Input {
         /// <param name="game">Your game object.</param>
         public static void Setup(Game game) {
             Game = game;
+            Source = null;
 
             _newIsActive = Game.IsActive;
             _newMouse = Mouse.GetState();
@@ -134,6 +135,32 @@ namespace Apos.Input {
         }
 
         /// <summary>
+        /// Reads the input from a source instead of the real devices. Tests use it with a <see cref="SimulatedInput"/>.
+        /// There's no need for a game in that case.
+        /// </summary>
+        /// <param name="source">Where the input comes from.</param>
+        public static void Setup(IInputSource source) {
+            Source = source;
+            _currentFrame = 0;
+            _textEvents.Clear();
+            _lostTouches.Clear();
+
+            _newIsActive = source.IsActive;
+            _newMouse = source.GetMouse();
+            _newKeyboard = source.GetKeyboard();
+            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                _gamePadDeadZone[i] = Microsoft.Xna.Framework.Input.GamePadDeadZone.None;
+                _newGamepad[i] = source.GetGamePad(i);
+            }
+            _newTouch = source.GetTouch();
+            _oldTouch = _newTouch;
+
+            Pointer.Setup();
+        }
+        /// <summary>Where the input comes from when it isn't the real devices. Set with <see cref="Setup(IInputSource)"/>.</summary>
+        public static IInputSource Source { get; private set; }
+
+        /// <summary>
         /// Call this at the beginning of your update loop.
         /// </summary>
         /// <param name="gameTime">Drives TotalMS, which duration based conditions read.</param>
@@ -145,19 +172,30 @@ namespace Apos.Input {
             _oldKeyboard = _newKeyboard;
             _newGamepad.CopyTo(_oldGamePad, 0);
 
-            _newIsActive = Game.IsActive;
-            _newMouse = Mouse.GetState();
-            _newKeyboard = Keyboard.GetState();
-
-            for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
-                _newGamepad[i] = GamePad.GetState(i, GamePadDeadZone[i]);
-                _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
-            }
-
-            SyncTouchDisplaySize();
             _oldTouch = _newTouch;
-            _newTouch = TouchPanel.GetState();
-            _touchPanelCapabilities = TouchPanel.GetCapabilities();
+            if (Source is IInputSource source) {
+                _newIsActive = source.IsActive;
+                _newMouse = source.GetMouse();
+                _newKeyboard = source.GetKeyboard();
+                for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                    _newGamepad[i] = source.GetGamePad(i);
+                }
+                _newTouch = source.GetTouch();
+                _textEvents.AddRange(source.TakeTextInput());
+            } else {
+                _newIsActive = Game.IsActive;
+                _newMouse = Mouse.GetState();
+                _newKeyboard = Keyboard.GetState();
+
+                for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                    _newGamepad[i] = GamePad.GetState(i, GamePadDeadZone[i]);
+                    _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
+                }
+
+                SyncTouchDisplaySize();
+                _newTouch = TouchPanel.GetState();
+                _touchPanelCapabilities = TouchPanel.GetCapabilities();
+            }
             FindLostTouches();
 
             Pointer.Update();
