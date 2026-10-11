@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Thumbstick directions in GamePadButton, like LeftThumbstickLeft, and InputHelper.ThumbstickThreshold
 
+### Fixed
+
+- Tracked inputs staying consumed after InputHelper.Setup with an input source
+
 ## [3.1.0] - 2026-09-25
 
 ### Added

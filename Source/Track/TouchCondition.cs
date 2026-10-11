@@ -246,6 +246,8 @@ namespace Apos.Input.Track {
 
         /// <summary>Tracks contacts being used this frame.</summary>
         protected static HashSet<int> Tracker = new HashSet<int>();
+
+        internal static void Reset() => Tracker.Clear();
         private static uint _trackerFrame = uint.MaxValue;
     }
 }

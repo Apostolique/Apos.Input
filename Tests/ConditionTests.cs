@@ -147,6 +147,19 @@ namespace Apos.Input.Tests {
             Assert.False(right.Held());
         }
 
+        [Fact]
+        public void SetupForgetsWhatWasConsumed() {
+            Frame(Keys.Space);
+            Assert.True(new Track.KeyboardCondition(Keys.Space).Pressed());
+            Track.MouseCondition.Consume(MouseSensor.Pointer);
+
+            InputHelper.Setup(_input);
+            Frame(Keys.Space);
+
+            Assert.True(new Track.KeyboardCondition(Keys.Space).Held());
+            Assert.True(Track.MouseCondition.IsUnique(MouseSensor.Pointer));
+        }
+
         private void Stick(Vector2 left, Vector2 right = default) {
             _input.GamePads[0] = new GamePadState(new GamePadThumbSticks(left, right), new GamePadTriggers(), new GamePadButtons(), new GamePadDPad());
             Frame();

@@ -111,6 +111,11 @@ namespace Apos.Input.Track {
         /// <summary>Checks if the given mouse sensor is unique for this frame.</summary>
         public static bool IsUnique(MouseSensor sensor) => !SensorTracker.ContainsKey(sensor) || SensorTracker[sensor] != InputHelper.CurrentFrame;
 
+        internal static void Reset() {
+            ButtonTracker.Clear();
+            SensorTracker.Clear();
+        }
+
         /// <summary>
         /// The untracked condition answers whether the button is in that state, tracking only
         /// decides whether this instance is the one that gets to see it.

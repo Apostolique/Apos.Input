@@ -65,9 +65,22 @@ if (Track.KeyboardCondition.IsUnique(Keys.Right) && somethingElse) {
 }
 ```
 
+## The mouse pointer
+
+The mouse sitting over something isn't a button press, but hover still needs a winner, otherwise a button under a popup lights up along with the popup. `MouseSensor.Pointer` can be consumed like a button. Whatever is drawn on top checks first, and the first one under the mouse takes it:
+
+```csharp
+if (bounds.Contains(InputHelper.NewMouse.Position) && Track.MouseCondition.IsUnique(MouseSensor.Pointer)) {
+    Track.MouseCondition.Consume(MouseSensor.Pointer);
+    // Hovered.
+}
+```
+
+The game can check `IsUnique(MouseSensor.Pointer)` after the UI to know whether the mouse is over it.
+
 ## How it knows the frame changed
 
-`InputHelper.CurrentFrame` counts up once per `UpdateSetup`. Consuming stamps the key with that number, and `IsUnique` is just a check that the stamp isn't this frame's. Nothing needs clearing, since last frame's stamps can never match again.
+`InputHelper.CurrentFrame` counts up once per `UpdateSetup`. Consuming stamps the key with that number, and `IsUnique` is just a check that the stamp isn't this frame's. Nothing needs clearing, since last frame's stamps can never match again. `InputHelper.Setup` with an input source starts the count over, so it clears the stamps too.
 
 Touch works differently, because touch ids climb forever and a tracker that only grows would leak over a long session. Read [Touch](../touch/README.md#tracking-contacts).
 

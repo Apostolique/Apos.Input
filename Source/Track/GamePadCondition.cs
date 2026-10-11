@@ -108,5 +108,10 @@ namespace Apos.Input.Track {
         protected static Dictionary<(GamePadButton, int), uint> ButtonTracker = new Dictionary<(GamePadButton, int), uint>();
         /// <summary>Tracks gamepad sensors being used each frames.</summary>
         protected static Dictionary<(GamePadSensor, int), uint> SensorTracker = new Dictionary<(GamePadSensor, int), uint>();
+
+        internal static void Reset() {
+            ButtonTracker.Clear();
+            SensorTracker.Clear();
+        }
     }
 }

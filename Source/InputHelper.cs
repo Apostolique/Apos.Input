@@ -146,7 +146,12 @@ namespace Apos.Input {
         /// <param name="source">Where the input comes from.</param>
         public static void Setup(IInputSource source) {
             Source = source;
+            // The frames start over, so what was consumed on the old ones has to go too.
             _currentFrame = 0;
+            Track.KeyboardCondition.Reset();
+            Track.MouseCondition.Reset();
+            Track.GamePadCondition.Reset();
+            Track.TouchCondition.Reset();
             _textEvents.Clear();
             _lostTouches.Clear();
 

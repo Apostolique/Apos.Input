@@ -98,5 +98,7 @@ namespace Apos.Input.Track {
 
         /// <summary>Tracks keys being used each frames.</summary>
         protected static Dictionary<Keys, uint> Tracker = new Dictionary<Keys, uint>();
+
+        internal static void Reset() => Tracker.Clear();
     }
 }
