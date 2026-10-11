@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-Nothing yet!
+### Added
+
+- Thumbstick directions in GamePadButton, like LeftThumbstickLeft, and InputHelper.ThumbstickThreshold
 
 ## [3.1.0] - 2026-09-25
 

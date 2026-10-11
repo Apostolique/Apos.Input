@@ -102,6 +102,11 @@ namespace Apos.Input {
         /// </summary>
         public static Dictionary<GamePadButton, Func<GamePadState[], int, ButtonState>> GamePadButtons => _gamePadButtons;
         /// <summary>
+        /// How far a thumbstick has to be pushed, from 0 to 1, for its direction buttons like <see cref="GamePadButton.LeftThumbstickLeft"/> to be held.
+        /// Only the axis the stick is pushed along the most counts, so a diagonal holds one direction instead of two.
+        /// </summary>
+        public static float ThumbstickThreshold { get; set; } = 0.5f;
+        /// <summary>
         /// Used by conditions to know if they've been consumed this frame.
         /// </summary>
         public static uint CurrentFrame => _currentFrame;
@@ -327,7 +332,21 @@ namespace Apos.Input {
             {GamePadButton.Left, (s, i) => s[i].DPad.Left},
             {GamePadButton.Right, (s, i) => s[i].DPad.Right},
             {GamePadButton.Up, (s, i) => s[i].DPad.Up},
+            {GamePadButton.LeftThumbstickLeft, (s, i) => Stick(s[i].ThumbSticks.Left, -1, 0)},
+            {GamePadButton.LeftThumbstickRight, (s, i) => Stick(s[i].ThumbSticks.Left, 1, 0)},
+            {GamePadButton.LeftThumbstickUp, (s, i) => Stick(s[i].ThumbSticks.Left, 0, 1)},
+            {GamePadButton.LeftThumbstickDown, (s, i) => Stick(s[i].ThumbSticks.Left, 0, -1)},
+            {GamePadButton.RightThumbstickLeft, (s, i) => Stick(s[i].ThumbSticks.Right, -1, 0)},
+            {GamePadButton.RightThumbstickRight, (s, i) => Stick(s[i].ThumbSticks.Right, 1, 0)},
+            {GamePadButton.RightThumbstickUp, (s, i) => Stick(s[i].ThumbSticks.Right, 0, 1)},
+            {GamePadButton.RightThumbstickDown, (s, i) => Stick(s[i].ThumbSticks.Right, 0, -1)},
         };
+        // A thumbstick's y goes up. Ties go to the horizontal axis.
+        private static ButtonState Stick(Vector2 stick, int x, int y) {
+            float along = stick.X * x + stick.Y * y;
+            bool dominant = x != 0 ? MathF.Abs(stick.X) >= MathF.Abs(stick.Y) : MathF.Abs(stick.Y) > MathF.Abs(stick.X);
+            return dominant && along >= ThumbstickThreshold ? ButtonState.Pressed : ButtonState.Released;
+        }
         private static uint _currentFrame = 0;
     }
 }

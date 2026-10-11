@@ -40,7 +40,7 @@ ICondition jump = new TouchCondition();
 
 `GamePadCondition` takes the gamepad index, so `0` is the first controller. `AnyGamePadCondition` takes only the button and triggers when any connected gamepad has it, which is what a couch multiplayer menu wants.
 
-`MouseButton` is `LeftButton`, `MiddleButton`, `RightButton`, `XButton1`, and `XButton2`. `GamePadButton` covers the face buttons, `Start`, `Back`, `BigButton`, both shoulders, both stick clicks, and the four `DPad` directions.
+`MouseButton` is `LeftButton`, `MiddleButton`, `RightButton`, `XButton1`, and `XButton2`. `GamePadButton` covers the face buttons, `Start`, `Back`, `BigButton`, both shoulders, both stick clicks, the four `DPad` directions, and the four directions of each thumbstick, like `LeftThumbstickLeft`. A thumbstick direction is held while the stick is pushed past `InputHelper.ThumbstickThreshold` (0.5 by default) and more along that axis than the other, so a menu can treat the stick like a d-pad.
 
 Touch has a guide of its own, since where a contact landed matters more than that it happened. Read [Touch](../touch/README.md).
 

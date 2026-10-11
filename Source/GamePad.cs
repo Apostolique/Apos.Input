@@ -30,7 +30,23 @@ namespace Apos.Input {
         /// <summary>DPad right button.</summary>
         Right,
         /// <summary>DPad up button.</summary>
-        Up
+        Up,
+        /// <summary>Left thumbstick pushed left. See <see cref="InputHelper.ThumbstickThreshold"/>.</summary>
+        LeftThumbstickLeft,
+        /// <summary>Left thumbstick pushed right.</summary>
+        LeftThumbstickRight,
+        /// <summary>Left thumbstick pushed up.</summary>
+        LeftThumbstickUp,
+        /// <summary>Left thumbstick pushed down.</summary>
+        LeftThumbstickDown,
+        /// <summary>Right thumbstick pushed left.</summary>
+        RightThumbstickLeft,
+        /// <summary>Right thumbstick pushed right.</summary>
+        RightThumbstickRight,
+        /// <summary>Right thumbstick pushed up.</summary>
+        RightThumbstickUp,
+        /// <summary>Right thumbstick pushed down.</summary>
+        RightThumbstickDown
     }
     /// <summary>Gamepad sensors.</summary>
     public enum GamePadSensor {

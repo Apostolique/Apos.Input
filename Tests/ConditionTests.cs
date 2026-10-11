@@ -118,6 +118,40 @@ namespace Apos.Input.Tests {
         private static MouseState Mouse(int x, int y) =>
             new(x, y, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
 
+        [Fact]
+        public void ThumbstickDirectionsWorkLikeButtons() {
+            var left = new GamePadCondition(GamePadButton.LeftThumbstickLeft, 0);
+            var up = new GamePadCondition(GamePadButton.LeftThumbstickUp, 0);
+
+            Stick(new Vector2(-0.3f, 0f));
+            Assert.False(left.Held());
+
+            Stick(new Vector2(-0.8f, 0.1f));
+            Assert.True(left.Pressed());
+            Assert.False(up.Held());
+
+            Stick(new Vector2(-0.6f, 0.7f));
+            Assert.True(left.Released());
+            Assert.True(up.Pressed());
+
+            Stick(Vector2.Zero);
+            Assert.True(up.Released());
+        }
+
+        [Fact]
+        public void ThumbstickDirectionsCanBeTracked() {
+            var right = new Track.GamePadCondition(GamePadButton.RightThumbstickRight, 0);
+
+            Stick(Vector2.Zero, new Vector2(1f, 0f));
+            Assert.True(right.Pressed());
+            Assert.False(right.Held());
+        }
+
+        private void Stick(Vector2 left, Vector2 right = default) {
+            _input.GamePads[0] = new GamePadState(new GamePadThumbSticks(left, right), new GamePadTriggers(), new GamePadButtons(), new GamePadDPad());
+            Frame();
+        }
+
         private void Frame(params Keys[] keys) {
             _input.Keyboard = new KeyboardState(keys);
             _time += TimeSpan.FromMilliseconds(20);
