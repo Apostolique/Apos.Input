@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+Nothing yet!
+
+## [3.2.0] - 2026-10-10
+
 ### Added
 
 - Thumbstick directions in GamePadButton, like LeftThumbstickLeft, and InputHelper.ThumbstickThreshold
@@ -150,7 +154,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Everything!
 
-[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/Apostolique/Apos.Input/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/Apostolique/Apos.Input/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/Apostolique/Apos.Input/compare/v3.0.1...v3.1.0
 [3.0.1]: https://github.com/Apostolique/Apos.Input/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Apostolique/Apos.Input/compare/v2.5.0...v3.0.0
