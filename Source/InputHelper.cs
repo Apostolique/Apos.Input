@@ -199,7 +199,10 @@ namespace Apos.Input {
 
                 for (int i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     _newGamepad[i] = GamePad.GetState(i, GamePadDeadZone[i]);
-                    _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
+                    // On DesktopGL, GetCapabilities allocates the name and identifier strings on every call.
+                    if (_newGamepad[i].IsConnected != _oldGamePad[i].IsConnected) {
+                        _gamePadCapabilities[i] = GamePad.GetCapabilities(i);
+                    }
                 }
 
                 SyncTouchDisplaySize();
